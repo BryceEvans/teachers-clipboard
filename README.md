@@ -1,2 +1,2 @@
 # teachers-clipboard
-My classroom attendance, restroom, and management tracker.
+My classroom attendance, hallpass, and management tracker.

@@ -56,7 +56,7 @@ class StudentCards extends Component {
     return ( 
       <div>
         <div style={{margin: "10px", textAlign: "center"}}>
-          *These are NOT the names of my acutal students.
+          *NOT the names of my acutal students.
         </div>
         <div style={{display: "flex", flexWrap: "wrap"}}>
           {this.students.map((students) => (

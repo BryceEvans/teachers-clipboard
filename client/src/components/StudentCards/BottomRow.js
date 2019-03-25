@@ -9,12 +9,12 @@ class BottomRow extends Component {
       { name: 'user' },
       { name: 'exchange' },
       { name: 'eye' },
-      { name: 'question' }
+      // { name: 'question' }
     ]
   }
   render() { 
     return ( 
-      <div>
+      <div style={{display: "flex", justifyContent: "space-between"}}>
         {this.icons.map((icon, ind) => (
           <Icon name={icon.name} />
         ))}

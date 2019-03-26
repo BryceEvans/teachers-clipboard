@@ -4,7 +4,7 @@ import { Segment } from 'semantic-ui-react';
 
 import TrackerMenu from './TrackerMenu';
 import SeatingChart from '../SeatingChart/SeatingChart';
-// import SeatingChartSort from '../SeatingChart/SeatingChartSort';
+import SeatingChartSort from '../SeatingChart/SeatingChartSort';
 
 class Tracker extends Component {
   state = {  }
@@ -13,7 +13,7 @@ class Tracker extends Component {
       <Segment>
         <TrackerMenu />
         <SeatingChart />
-        {/* <SeatingChartSort /> */}
+        <SeatingChartSort />
       </Segment>
     );
   }

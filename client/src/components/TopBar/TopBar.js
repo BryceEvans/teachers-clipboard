@@ -28,7 +28,7 @@ export default class TopBar extends Component {
     // const { active } = this.state
 
     return (
-      <Menu secondary color='blue'>
+      <Menu secondary>
         {this.links.map((link, index) => (
           <Link key={index} to={link.url}>
             {/* <Icon name={link.icon} /> */}

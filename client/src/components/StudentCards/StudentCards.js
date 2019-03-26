@@ -64,7 +64,7 @@ class StudentCards extends Component {
           ))}
         </div>
             <div style={{margin: "10px", textAlign: "center"}}>
-              <strong>-- FRONT OF CLASSROOM --</strong>
+              <strong><em> -- FRONT OF CLASSROOM -- </em></strong>
             </div>
       </div>
     );

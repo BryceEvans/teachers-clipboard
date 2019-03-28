@@ -12,11 +12,16 @@ class BottomRow extends Component {
       // { name: 'question' }
     ]
   }
+
+  clickHandler = (e) => {
+    alert("Item clicked!");
+  }
+
   render() { 
     return ( 
       <div style={{display: "flex", justifyContent: "space-between"}}>
         {this.icons.map((icon, ind) => (
-          <Icon name={icon.name} />
+          <Icon name={icon.name} onClick={this.clickHandler} style={{cursor:'pointer'}}/>
         ))}
       </div>
     );

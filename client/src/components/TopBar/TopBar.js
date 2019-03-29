@@ -36,7 +36,9 @@ export default class TopBar extends Component {
             name={link.name}
             onClick={this.handleItemClick}
             as='a'
-            />
+            >
+              {link.name}
+            </Menu.Item>
           </Link>
         ))}
       </Menu>

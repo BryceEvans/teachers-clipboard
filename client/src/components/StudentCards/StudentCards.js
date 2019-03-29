@@ -9,10 +9,10 @@ class StudentCards extends Component {
   this.state = {  }
 
   this.students = [
-    { studentID: 1, firstName: 'Jared', lastName: 'Smith' },
-    { studentID: 2, firstName: 'Juan', lastName: 'Garcia' },
-    { studentID: 3, firstName: 'Jane', lastName: 'Smith' },
-    { studentID: 4, firstName: 'Maria', lastName: 'Jiminez' },
+    { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [ { name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' } ] },
+    { studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false, tags: [ { name: 'SPED', color: 'red' } ] },
+    { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [ { name: 'Anxiety', color: 'yellow' } ] },
+    { studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, },
     { studentID: 5, firstName: 'Another', lastName: 'Student' },
     { studentID: 6, firstName: 'Another', lastName: 'Student' },
     { studentID: 7, firstName: 'Another', lastName: 'Student' },

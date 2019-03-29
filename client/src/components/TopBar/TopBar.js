@@ -7,25 +7,26 @@ export default class TopBar extends Component {
     super(props);
 
     this.state = { 
-      active: 'home'
+      active: 'Home'
     }
 
     this.links = [
-      { url: `/dashboard`, name: 'home', icon: 'home' },
+      { url: `/dashboard/home`, name: 'home', icon: 'home' },
       { url: `/dashboard/tracker`, name: 'tracker', icon: 'clipboard outline' },
       { url: `/dashboard/students`, name: 'students', icon: 'address book' },
       { url: `/dashboard/reports`, name: 'reports', icon: 'clipboard list' },
       { url: `/dashboard/settings`, name: 'settings', icon: 'setting' },
     ]
 
-    this.handleItemClick = (e) => {
-      this.setState({ active: e.target.innerHTML })
   }
-}
+  
+  handleItemClick = (e) => {
+    this.setState({ active: e.target.innerHTML })
+  }
 
   render() {
 
-    // const { active } = this.state
+    const { active } = this.state
 
     return (
       <Menu secondary>
@@ -37,7 +38,7 @@ export default class TopBar extends Component {
             onClick={this.handleItemClick}
             as='a'
             >
-              {link.name}
+              {/* {link.name} */}
             </Menu.Item>
           </Link>
         ))}

@@ -33,7 +33,7 @@ class BottomRow extends Component {
         {this.icons.map((icon, ind) => (
           <div style={{display: "flex", flexDirection: "column"}}>
             <Icon name={icon.name} onClick={this.clickHandler} style={{cursor:'pointer'}}/>
-            { this.state.count > 0 ? <Label circular color='orange' size='tiny'>{this.state.count}</Label> : null }
+            { this.state.count > 0 ? <Label circular color='orange' size='mini'>{this.state.count}</Label> : null }
           </div>
         ))}
       </div>

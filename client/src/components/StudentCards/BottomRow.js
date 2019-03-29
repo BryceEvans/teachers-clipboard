@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Label } from 'semantic-ui-react';
 
 class BottomRow extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class BottomRow extends Component {
         {this.icons.map((icon, ind) => (
           <div style={{display: "flex", flexDirection: "column"}}>
             <Icon name={icon.name} onClick={this.clickHandler} style={{cursor:'pointer'}}/>
-            { this.state.count > 0 ? <p>{this.state.count}</p> : null }
+            { this.state.count > 0 ? <Label circular color='orange' size='tiny'>{this.state.count}</Label> : null }
           </div>
         ))}
       </div>

@@ -17,7 +17,6 @@ export default class TopBar extends Component {
       { url: `/dashboard/reports`, name: 'reports', icon: 'clipboard list' },
       { url: `/dashboard/settings`, name: 'settings', icon: 'setting' },
     ]
-
   }
   
   handleItemClick = (e) => {

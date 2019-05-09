@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const bodyParser = require('body-parser')
-const routes = require('./routes')
+// const routes = require('./routes')
 
 const morgan = require('morgan')
 const cors = require('cors')
@@ -22,7 +22,7 @@ server.get('/', (req,res) => {
     res.send("Get is Working!")
     console.log("Get is working")
 })
-server.use('/api', routes)
+// server.use('/api', routes)
 
 
 

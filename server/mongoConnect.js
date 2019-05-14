@@ -4,12 +4,12 @@ mongoose.Promise = global.Promise
   //COSMOS DB CONNECTION EXAMPLE
   function connect() {
       mongoose.set('debug', true);
-      const url = 'mongodb://localhost:27017/TeacherClips';
+      const url = 'mongodb://localhost:27017/TeacherClipsx';
 
       return mongoose.connect(url, 
       { 
           // useCreateIndex: true, 
-          useNewUrlParser: false,    
+          useNewUrlParser: true,    
       })
           .then(() => console.log('Connection to Localhost successful'))
           .catch((err) => console.error("Connection to Localhost UNSUCCESSFUL", err));

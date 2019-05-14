@@ -2,13 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const personSchema = new Schema({
-    //About
     firstName: String,
     lastName: String,
-
     
-    //Default
-    id: { type: Number, required: true },
+    // id: { type: Number, required: true },
+    
+    //Automated By Default
     updated: { type: Date, default: Date.now },
     created: { type: Date, default: Date.now },
 

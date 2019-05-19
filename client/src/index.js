@@ -11,15 +11,15 @@ import Board from '../src/components/DND/ClassroomGrid/Board'
 
 const root = document.getElementById('root')
 
+// observe(knightPosition =>
+//   ReactDOM.render(<Board knightPosition={knightPosition} />, root),
+//   )
+  
 observe(knightPosition =>
-  ReactDOM.render(<Board knightPosition={knightPosition} />, root),
-)
-
-// ReactDOM.render(
-//   <Router>
-//     <App />
-//   </Router>,
-// root);
+ReactDOM.render(
+  <Router>
+      <App knightPosition={knightPosition} />}/>
+  </Router>, root))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -21,11 +21,11 @@ class Dashboard extends Component {
   }
 
   render() { 
-
+    console.log("in dashboard", this.props.knightPosition.knightPosition)
       return ( 
         <div>
 
-            <Board knightPosition={[0,0] } />
+            <Board knightPosition={this.props.knightPosition.knightPosition} />
         
 
 

@@ -6,11 +6,20 @@ import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-document.getElementById('root'));
+import {observe} from '../src/components/DND/ClassroomGrid/Game'
+import Board from '../src/components/DND/ClassroomGrid/Board'
+
+const root = document.getElementById('root')
+
+observe(knightPosition =>
+  ReactDOM.render(<Board knightPosition={knightPosition} />, root),
+)
+
+// ReactDOM.render(
+//   <Router>
+//     <App />
+//   </Router>,
+// root);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

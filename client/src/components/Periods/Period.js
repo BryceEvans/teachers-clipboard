@@ -1,14 +1,16 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+// import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Period = (props) => {
     return ( 
-      <Menu.Item>
+      // <Menu.Item>
+      <div style={{margin: "10px"}}> 
         <Link to={'/dashboard/tracker/exampleclass'}>
           <strong>{props.classPeriods.class}:</strong> {props.classPeriods.name}
         </Link>
-      </Menu.Item>
+      </div>
+      // </Menu.Item>
     );
   }
 

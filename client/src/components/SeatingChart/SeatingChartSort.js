@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Segment, Button } from 'semantic-ui-react';
+// import Paper from '@material-ui/core/Paper';
 
 import SortButtons from '../SortButtons/SortButtons';
 import AlternatingSortButtons from '../SortButtons/AlternatingSortButtons';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { Menu } from 'semantic-ui-react';
+// import Menu from '@material-ui/core/Menu';
+// import { Menu } from 'semantic-ui-react';
 import Period from '../Periods/Period';
 
 class TrackerMenu extends Component {
@@ -19,12 +19,13 @@ class TrackerMenu extends Component {
   }
   render() { 
     return ( 
-      <div>
-        <Menu tabular>
+      <div style={{display: "flex", flexDirection: "row", justifyContent: "flexStart"}}>
+        {/* <Menu tabular> */}
           {this.classPeriods.map((classPeriods, index) => (
-            <Period key={index} classPeriods={classPeriods} />
+            <Period key={index} classPeriods={classPeriods}
+            />
           ))}
-        </Menu>
+        {/* </Menu> */}
       </div>
     );
   }

@@ -1,56 +1,43 @@
 import React from 'react'
-import Square from '../Square/Square'
-import Knight from '../Student/Student'
 import BoardSquare from '../Square/BoardSquare'
 
-import { moveKnight } from '../ClassroomGrid/Game'
+import { Piece } from '../Student/Piece'
+/** Styling properties applied to the board element */
 
-
-function handleSquareClick(toX, toY) {
-    moveKnight(toX, toY)
-  }
-
-  const squareTarget = {
-    drop(props, monitor) {
-      moveKnight(props.x, props.y)
-    },
-  }
-  
-  function renderSquare(i, knightPosition) {
+const boardStyle = {
+  width: '750px',
+  height: '100%',
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginLeft: 50,
+  marginTop: 50,
+}
+/** Styling properties applied to each square element */
+const squareStyle = { width: '25px', height: '25px' }
+/**
+ * The chessboard component
+ * @param props The react props
+ */
+const Board = ({ knightPosition: [knightX, knightY] }) => {
+  function renderSquare(i) {
+    // console.log("What is i:", i)
     const x = i % 8
     const y = Math.floor(i / 8)
     return (
-      <div key={i} style={{ width: '12.5%', height: '12.5%' }}>
+      <div key={i} style={squareStyle}>
+        
         <BoardSquare x={x} y={y}>
-          {renderPiece(x, y, knightPosition)}
+          {/* {i} */}
+          <Piece isKnight={x === knightX && y === knightY} />
         </BoardSquare>
       </div>
     )
   }
-  
-  function renderPiece(x, y, [knightX, knightY]) {
-    if (x === knightX && y === knightY) {
-      return <Knight />
-    }
-  }
-
-
-export default function Board({ knightPosition }) {
   const squares = []
-  for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, knightPosition))
+  for (let i = 0; i < 200; i += 1) {
+      // console.log("What is this?", i)
+    squares.push(renderSquare(i))
   }
-
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexWrap: 'wrap',
-      }}
-    >
-      {squares}
-    </div>
-  )
+  return <div style={boardStyle}>{squares} </div>
 }
+export default Board

@@ -1,16 +1,18 @@
 import React from 'react'
 
  const Square = ({ black, children }) => {
-  const fill = black ? 'black' : 'white'
-  const stroke = black ? 'white' : 'black'
+    //  console.log("Children?", children)
+  // const fill = black ? 'black' : 'white'
+  // const stroke = black ? 'white' : 'black'
 
   return (
     <div
       style={{
-        backgroundColor: fill,
-        color: stroke,
+        border: '1px solid black',
+        backgroundColor: "white",
+        // color: stroke,
         width: '100%',
-        height: '100px',
+        height: '100%',
       }}
     >
       {children}

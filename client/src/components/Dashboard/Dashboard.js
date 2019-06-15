@@ -1,43 +1,51 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import Knight from "../DND/Student/Student"
-import Square from "../DND/Square/Square"
+// import Example from "../DND/example6/example"
+import Example from "../DND/AGAIN/example"
 import Board from "../DND/ClassroomGrid/Board"
 import { observe } from '../DND/ClassroomGrid/Game'
+import withDragDropContext from '../DND/Student/fix';
 
 
 import Tracker from '../Tracker/Tracker';
 
-
-// observe(knightPosition =>
-//   ReactDOM.render(<Board knightPosition={knightPosition} />, root),
-// )
-
+//************************************ */Refactor into HOOKS!
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      knightPosition: [0, 0]
+     }
   }
+  componentDidMount = () => {
+    observe(knightPosition => {
+        this.setState(prevState => ({
+            ...prevState,
+            knightPosition
+        }));
+    });
+}
 
   render() { 
-    console.log("in dashboard", this.props.knightPosition.knightPosition)
       return ( 
         <div>
+          <Example />
+            <Board knightPosition={this.state.knightPosition} />
+            {/* <Route path='/dashboard/home' component={ Board } /> */}
+            <Route path='/dashboard/tracker' component={ Tracker } />
+            
+            {/* 
+              <Route exact path='/dashboard/' component={ Home } />
+              <Route path='/dashboard/students' component={ Students } />
+              <Route path='/dashboard/reports' component={ Reports } />
+              <Route path='/dashboard/settings' component={ Settings } /> 
+            */}
 
-            <Board knightPosition={this.props.knightPosition.knightPosition} />
-        
-
-
-        {/* <Route exact path='/dashboard/' component={ Home } /> */}
-        <Route path='/dashboard/tracker' component={ Tracker } />
-        {/* <Route path='/dashboard/students' component={ Students } />
-        <Route path='/dashboard/reports' component={ Reports } />
-      <Route path='/dashboard/settings' component={ Settings } /> */}
       </div>
     
     )
   }
 }
 
-export default Dashboard;
+export default withDragDropContext(Dashboard)

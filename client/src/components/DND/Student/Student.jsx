@@ -1,33 +1,37 @@
 import React from 'react'
 import { ItemTypes } from '../ClassroomGrid/ItemType'
-import { DragSource } from 'react-dnd'
 
-const knightSource = {
-  beginDrag(props) {
-    return {}
-  },
+import { DragSource, DragPreviewImage } from 'react-dnd'
+
+
+const knightStyle = {
+  fontSize: 40,
+  fontWeight: 'bold',
+  cursor: 'move',
 }
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  }
-}
-
-function Knight({ connectDragSource, isDragging }) {
-  return connectDragSource(
-    <div
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        fontSize: 25,
-        fontWeight: 'bold',
-        cursor: 'move',
-      }}
-    >
-      ♘
-    </div>,
+const Knight = ({ connectDragSource, connectDragPreview, isDragging }) => {
+  return (
+    <>
+      {/* <DragPreviewImage connect={connectDragPreview} src={knightImage} /> */}
+      <div
+        ref={connectDragSource}
+        style={Object.assign({}, knightStyle, {
+          opacity: isDragging ? 0.5 : 1,
+        })}
+      >
+        ♘
+      </div>
+    </>
   )
 }
-
-export default DragSource(ItemTypes.KNIGHT, knightSource, collect)(Knight)
+export default DragSource(
+  ItemTypes.KNIGHT,
+  {
+    beginDrag: () => ({}),
+  },
+  (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging(),
+  }),
+)(Knight)

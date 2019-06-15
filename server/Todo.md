@@ -47,7 +47,7 @@ Count (teachers/principal custom count):
     Technology warning
 
 RI score
-Present/Absent/Tardy (default, red, yellow)
+Present/Absent/Tardy (default, red, color)
 
 
 

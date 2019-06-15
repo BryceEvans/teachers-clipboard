@@ -19,6 +19,7 @@ function getItemStyles(initialOffset, currentOffset, isSnapToGrid) {
     }
   }
   let { x, y } = currentOffset
+  console.log('x: ', x, "y: ", y)
   if (isSnapToGrid) {
     x -= initialOffset.x
     y -= initialOffset.y

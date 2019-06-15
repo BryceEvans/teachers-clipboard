@@ -24,7 +24,7 @@ const BoardSquare = ({
     <div style={boardSquareStyle}>
       <Square black={black}>{children}</Square>
       {/* {isOver && !canDrop && <Overlay color="red" />}
-      {!isOver && canDrop && <Overlay color="yellow" />}
+      {!isOver && canDrop && <Overlay color="color" />}
       {isOver && canDrop && <Overlay color="green" />} */}
     </div>,
   )

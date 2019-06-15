@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react'
 import Container from './Container'
 import CustomDragLayer from './CustomDragLayer'
+
 const DragAroundCustomDragLayer = () => {
-  const [snapToGridAfterDrop, setSnapToGridAfterDrop] = useState(false)
+  const [snapToGridAfterDrop, setSnapToGridAfterDrop] = useState(true)
   const [snapToGridWhileDragging, setSnapToGridWhileDragging] = useState(false)
   const handleSnapToGridAfterDropChange = useCallback(() => {
     setSnapToGridAfterDrop(!snapToGridAfterDrop)
@@ -10,6 +11,7 @@ const DragAroundCustomDragLayer = () => {
   const handleSnapToGridWhileDraggingChange = useCallback(() => {
     setSnapToGridWhileDragging(!snapToGridWhileDragging)
   }, [snapToGridWhileDragging])
+  
   return (
     <div>
       <Container snapToGrid={snapToGridAfterDrop} />
@@ -33,7 +35,7 @@ const DragAroundCustomDragLayer = () => {
             onChange={handleSnapToGridAfterDropChange}
           />
           <small>Snap to grid after drop</small>
-          <button>New Desk</button>
+          {/* <button onClick={createDesk()}>Create New Desk</button> */}
         </label>
       </p>
     </div>

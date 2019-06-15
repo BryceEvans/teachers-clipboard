@@ -6,12 +6,13 @@ import doSnapToGrid from './snapToGrid'
 import update from 'immutability-helper'
 import './DnD.css'
 
+
 const styles = {
-  width: "1000px",
+  width: "700px",
   height: "500px",
   border: '1px solid black',
   position: 'relative',
-  marginLeft: 50,
+  // marginLeft: 50,
   
 }
 
@@ -52,6 +53,7 @@ const Container = ({ snapToGrid }) => {
       const delta = monitor.getDifferenceFromInitialOffset()
       let left = Math.round(item.left + delta.x)
       let top = Math.round(item.top + delta.y)
+
       if (snapToGrid) {
         ;[left, top] = doSnapToGrid(left, top)
       }
@@ -61,7 +63,7 @@ const Container = ({ snapToGrid }) => {
   })
 
   return (
-    <div classname="Container" ref={drop} style={styles}>
+    <div class="Container" ref={drop} style={styles}>
       <button onClick={() => createDesk()}>Create New Desk</button>
       {Object.keys(boxes).map(key => renderBox(boxes[key], key))}
     </div>

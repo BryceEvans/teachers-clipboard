@@ -4,6 +4,7 @@ import ItemTypes from './ItemTypes'
 import DraggableBox from './DraggableBox'
 import doSnapToGrid from './snapToGrid'
 import update from 'immutability-helper'
+import './DnD.css'
 
 const styles = {
   width: "1000px",
@@ -11,6 +12,7 @@ const styles = {
   border: '1px solid black',
   position: 'relative',
   marginLeft: 50,
+  
 }
 
 function renderBox(item, key) {
@@ -19,16 +21,16 @@ function renderBox(item, key) {
 
 const Container = ({ snapToGrid }) => {
   const [boxes, setBoxes] = useState([
-     { top: 20, left: 80, title: 'Desk1' },
-     { top: 120, left: 20, title: 'Desk2' },
-     { top: 220, left: 120, title: 'Desk3' },
-     { top: 320, left: 220, title: 'Desk4' },
-     { top: 420, left: 320, title: 'Desk5' },
+    { top: 20, left: 80, title: 'Desk1' },
+    { top: 120, left: 20, title: 'Desk2' },
+    { top: 220, left: 120, title: 'Desk3' },
+    { top: 320, left: 220, title: 'Desk4' },
+    { top: 420, left: 320, title: 'Desk5' },
   ])
 
-  const createDesk = () => {
+  const createDesk = useCallback(() => {
     setBoxes([...boxes, { top: 100, left: 100, title: 'Desk6' } ]);
-  };
+  });
 
   const moveBox = useCallback(
     (id, left, top) => {
@@ -42,6 +44,7 @@ const Container = ({ snapToGrid }) => {
     },
     [boxes],
   )
+ 
 
   const [, drop] = useDrop({
     accept: ItemTypes.BOX,
@@ -58,7 +61,7 @@ const Container = ({ snapToGrid }) => {
   })
 
   return (
-    <div ref={drop} style={styles}>
+    <div classname="Container" ref={drop} style={styles}>
       <button onClick={() => createDesk()}>Create New Desk</button>
       {Object.keys(boxes).map(key => renderBox(boxes[key], key))}
     </div>

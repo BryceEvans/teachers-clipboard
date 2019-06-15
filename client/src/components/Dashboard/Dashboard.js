@@ -1,38 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
-// import Example from "../DND/example6/example"
-import Example from "../DND/AGAIN/example"
-import Board from "../DND/ClassroomGrid/Board"
-import { observe } from '../DND/ClassroomGrid/Game'
-import withDragDropContext from '../DND/Student/fix';
+
+import Example from "../DND/example"
+import withDragDropContext from '../DND/fix';
 
 
 import Tracker from '../Tracker/Tracker';
 
-//************************************ */Refactor into HOOKS!
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      knightPosition: [0, 0]
-     }
-  }
-  componentDidMount = () => {
-    observe(knightPosition => {
-        this.setState(prevState => ({
-            ...prevState,
-            knightPosition
-        }));
-    });
-}
-
-  render() { 
+const Dashboard = () => {
       return ( 
         <div>
           <Example />
-            <Board knightPosition={this.state.knightPosition} />
-            {/* <Route path='/dashboard/home' component={ Board } /> */}
+
             <Route path='/dashboard/tracker' component={ Tracker } />
             
             {/* 
@@ -46,6 +26,6 @@ class Dashboard extends Component {
     
     )
   }
-}
+
 
 export default withDragDropContext(Dashboard)

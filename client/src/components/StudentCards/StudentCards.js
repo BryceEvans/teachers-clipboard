@@ -11,7 +11,7 @@ class StudentCards extends Component {
   this.students = [
     { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [ { name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' } ] },
     { studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false, tags: [ { name: 'SPED', color: 'red' } ] },
-    { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [ { name: 'Anxiety', color: 'yellow' } ] },
+    { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [ { name: 'Anxiety', color: 'color' } ] },
     { studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: [  ] },
     { studentID: 5, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: [  ] },
     { studentID: 6, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: [  ] },

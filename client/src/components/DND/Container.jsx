@@ -63,7 +63,7 @@ const Container = ({ snapToGrid }) => {
   })
 
   return (
-    <div class="Container" ref={drop} style={styles}>
+    <div className="Container" ref={drop} style={styles}>
       <button onClick={() => createDesk()}>Create New Desk</button>
       {Object.keys(boxes).map(key => renderBox(boxes[key], key))}
     </div>

@@ -8,8 +8,8 @@ import './DnD.css'
 
 
 const styles = {
-  width: "700px",
-  height: "500px",
+  width: "1000px",
+  height: "700px",
   border: '1px solid black',
   position: 'relative',
   // marginLeft: 50,

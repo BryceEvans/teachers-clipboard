@@ -1,8 +1,8 @@
 import React from 'react'
 const styles = {
-  border: '1px dashed gray',
-  width: '59px',
-  height: '39px',
+  border: '1px solid gray',
+  width: '80px',
+  height: '60px',
   padding: '3px',
   cursor: 'move',
 }

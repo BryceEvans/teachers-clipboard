@@ -12,9 +12,23 @@ const DragAroundCustomDragLayer = () => {
     setSnapToGridWhileDragging(!snapToGridWhileDragging)
   }, [snapToGridWhileDragging])
   
+  
+  const [menu, setMenu] = useState({
+    visible: false,
+    desk: "",
+    id: '',
+    top: '',
+    left: '',
+  })
+  
+
   return (
-    <div>
-      <Container snapToGrid={snapToGridAfterDrop} />
+    <div> 
+      <div>
+        Future Menu:  
+        {menu.visible ? <span>{menu.desk}<button >Rotate</button> </span> : null}
+      </div>
+      <Container snapToGrid={snapToGridAfterDrop} setMenu={setMenu} />
       <CustomDragLayer snapToGrid={snapToGridWhileDragging} />
       <p>
         <label htmlFor="snapToGridWhileDragging">
@@ -35,7 +49,7 @@ const DragAroundCustomDragLayer = () => {
             onChange={handleSnapToGridAfterDropChange}
           />
           <small>Snap to grid after drop</small>
-          {/* <button onClick={createDesk()}>Create New Desk</button> */}
+          {/* <button onClick={Container.createDesk()}>Create New Desk</button> */}
         </label>
       </p>
     </div>

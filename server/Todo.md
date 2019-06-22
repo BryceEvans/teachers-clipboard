@@ -61,6 +61,9 @@ Custom organization of icons on cards
 
 
 
+[] Update an object in an array in state
+[] Read state for CSS styling (isRectangle, isTable, isDesk) --> render css accordingly
+[] Select a desk and show menu that changes state, deletes, and copies
 
 
 

@@ -4,19 +4,23 @@ const styles = {
   display: 'inline-block',
 }
 
-const BoxDragPreview = memo(({ title }) => {
+const BoxDragPreview = memo(({ title, deskType }) => {
+  // console.log('title:', title)
+  // console.log('BOX DRAG PREVdeskType:', deskType)
+  
   let [tickTock, setTickTock] = useState(false)
-  console.log('tickTock:', tickTock)
+  
   useEffect(
     function subscribeToIntervalTick() {
-      const interval = setInterval(() => setTickTock(!tickTock), 500)
-      return () => clearInterval(interval)
+        const interval = setInterval(() => setTickTock(!tickTock), 500)
+        return () => clearInterval(interval)
     },
-    [tickTock],
+        [tickTock],
   )
+
   return (
     <div style={styles}>
-      <Box title={title} color={tickTock = true} />
+      <Box title={title} deskType={deskType} color={tickTock = true} />
     </div>
   )
 })

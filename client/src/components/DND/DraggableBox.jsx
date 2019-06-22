@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useDrag } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import { getEmptyImage } from 'react-dnd-html5-backend'
 import Box from './Box'
+import { MenuContext } from '../../Store'
 
 function getStyles(left, top, isDragging) {
   const transform = `translate3d(${left}px, ${top}px, 0)`
@@ -17,7 +18,8 @@ function getStyles(left, top, isDragging) {
   }
 }
 const DraggableBox = props => {
-  const { id, title, left, top, deskType, setMenu } = props
+  const [menu, setMenu] = useContext(MenuContext)
+  const { id, title, left, top, deskType } = props
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: ItemTypes.BOX, id, left, top, title, deskType },
     collect: monitor => ({
@@ -29,16 +31,11 @@ const DraggableBox = props => {
   }, [])
 
   const boxInfo = (props) => {
-    console.log('IMPORTprops:', props)
     setMenu({
-      visible:true,
-      desk: props.title,
+      visible: true,
       id: props.id,
-      top: props.top,
-      left: props.left,
+      title: props.title,
     })
-
-    console.log("P Here: ", props)
   }
 
   return (
@@ -51,4 +48,5 @@ const DraggableBox = props => {
     </div>
   )
 }
+
 export default DraggableBox

@@ -5,9 +5,7 @@ const styles = {
 }
 
 const BoxDragPreview = memo(({ title, deskType }) => {
-  // console.log('title:', title)
-  // console.log('BOX DRAG PREVdeskType:', deskType)
-  
+
   let [tickTock, setTickTock] = useState(false)
   
   useEffect(

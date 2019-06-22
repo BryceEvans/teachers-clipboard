@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import TopBar from './components/TopBar/TopBar';
 import Dashboard from './components/Dashboard/Dashboard';
 
-class App extends Component {
-  
-  render() {
+const App = () => {
     return (
         <div>
             <TopBar />
             <Dashboard />                
         </div>
     );
-  }
 }
 
 

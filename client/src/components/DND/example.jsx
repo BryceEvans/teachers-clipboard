@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import Container from './Container'
 import CustomDragLayer from './CustomDragLayer'
+import { MenuContext } from '../../Store'
 
 const DragAroundCustomDragLayer = () => {
   const [snapToGridAfterDrop, setSnapToGridAfterDrop] = useState(true)
@@ -13,14 +14,7 @@ const DragAroundCustomDragLayer = () => {
   }, [snapToGridWhileDragging])
   
   
-  const [menu, setMenu] = useState({
-    visible: false,
-    desk: "",
-    id: '',
-    top: '',
-    left: '',
-  })
-  
+  const [menu, setMenu] = useContext(MenuContext)
 
   return (
     <div> 

@@ -25,7 +25,6 @@ const createDesk = useCallback(() => {
 });
 
 function renderBox(item, key) {
-  console.log('key:', key)
   return <DraggableBox key={key} id={key} {...item}/>
 }
 

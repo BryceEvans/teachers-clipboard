@@ -30,22 +30,22 @@ const styles4 = {
   padding: '3px',
   cursor: 'move',
 }
-const showBoxMenu = () => {
-  console.log("Clicked box")
 
+const styles5 = {
+  border: '1px solid gray',
+  width: '60px',
+  height: '60px',
+  padding: '3px',
+  cursor: 'move',
 }
 
 const Box = ({ title, deskType, color }) => {  
-// console.log('BOX title:', title)
-// console.log('BOX deskType:', deskType)
-
   const backgroundColor = color ? 'lightgrey' : 'white'
   
   let x = switchStyle(deskType, backgroundColor)
-  // console.log('x:', x)
 
   return (
-    <div style={x} onClick={() => showBoxMenu()}>
+    <div style={x}>
         {title}
     </div>
   )
@@ -63,7 +63,7 @@ const switchStyle = (deskType, backgroundColor) => {
     case 'desk-long-vertical':
         return Object.assign({}, styles4, { backgroundColor });
     case 'desk-square':
-        return Object.assign({}, styles4, { backgroundColor });
+        return Object.assign({}, styles5, { backgroundColor });
     default:
         return Object.assign({}, styles, { backgroundColor });
   }

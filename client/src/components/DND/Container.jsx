@@ -20,16 +20,12 @@ const Container = ({ snapToGrid }) => {
   const [boxes, setBoxes] = useContext(DeskContext)
   const [menu, setMenu] = useContext(MenuContext)
 
-const createDesk = useCallback(() => {
-  setBoxes([...boxes, { top: 100, left: 100, title: 'Desk6' } ]);
-});
-
 function renderBox(item, key) {
   return <DraggableBox key={key} id={key} {...item}/>
 }
 
   const moveBox = useCallback(
-    (id, left, top, title) => {
+    (id, left, top, title, deskType) => {
       setBoxes(
         update(boxes, {
           [id]: {
@@ -43,6 +39,7 @@ function renderBox(item, key) {
         id: id,
         top: top,
         left: left,
+        deskType: deskType
       })
     },
     [boxes],
@@ -51,6 +48,7 @@ function renderBox(item, key) {
   const [, drop] = useDrop({
     accept: ItemTypes.BOX,
     drop(item, monitor) {
+    console.log('item:', item)
 
       const delta = monitor.getDifferenceFromInitialOffset()
       let left = Math.round(item.left + delta.x)
@@ -59,7 +57,7 @@ function renderBox(item, key) {
       if (snapToGrid) {
         ;[left, top] = doSnapToGrid(left, top)
       }
-      moveBox(item.id, left, top, item.title)
+      moveBox(item.id, left, top, item.title, item.deskType)
       return undefined
     },
   })
@@ -67,7 +65,6 @@ function renderBox(item, key) {
   return (
     <div className="Container" ref={drop} style={styles}>
       {Object.keys(boxes).map(key => renderBox(boxes[key], key))}
-      <button onClick={() => createDesk()}>Create New Desk</button>
     </div>
   )
 

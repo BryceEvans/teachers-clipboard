@@ -31,14 +31,13 @@ const DraggableBox = props => {
   }, [])
 
   const boxInfo = (props) => {
-    console.log('props:', props)
-
     setMenu({
       visible: true,
       id: props.id,
       title: props.title,
       top: props.top,
-      left: props.left
+      left: props.left,
+      deskType: props.deskType
     })
   }
 

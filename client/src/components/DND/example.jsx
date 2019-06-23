@@ -14,22 +14,47 @@ const DragAroundCustomDragLayer = () => {
     setSnapToGridWhileDragging(!snapToGridWhileDragging)
   }, [snapToGridWhileDragging])
   
-  
   const [menu, setMenu] = useContext(MenuContext)
   const [boxes, setBoxes] = useContext(DeskContext)
 
+
+  const switchDesk = (deskType) => {
+    switch(deskType) {
+      case 'desk-horizontal':
+          return 'desk-long-horizontal'
+
+      case 'desk-long-horizontal':
+          return 'desk-vertical'
+
+      case 'desk-vertical':
+          return 'desk-long-vertical'
+
+      case 'desk-long-vertical':
+          return 'desk-square'
+
+      case 'desk-square':
+          return 'desk-horizontal'
+
+      default:
+          return 'desk-horizontal'
+    }
+  }
   const rotateDesk = props => {
-    const {id, top, left, title } = props
-    // console.log('Rotate props CONTAINER:', props)
-  
+    const {id, top, left, title, deskType } = props
+    let newDeskType = switchDesk(deskType)
     let newArr = [...boxes]; // copying the old datas array
-    newArr[id] = {top: top, left: left, title: title, deskType: "desk-long-horizontal"}; // replace e.target.value with whatever you want to change it to
-  
+    newArr[id] = {top: top, left: left, title: title, deskType: newDeskType}; // replace e.target.value with whatever you want to change it to
     setBoxes(newArr);
   }
+
+  const createDesk = useCallback(() => {
+    setBoxes([...boxes, { top: 100, left: 100, title: 'Hard Code', deskType: 'desk-horizontal' } ]);
+  });
+
   return (
     <div> 
       <div>
+        <button onClick={() => createDesk()}>Create New Desk</button>
         Future Menu:  
         {menu.visible ? <span>{menu.title}<button onClick={() => rotateDesk(menu)}>Rotate</button> </span> : null}
       </div>

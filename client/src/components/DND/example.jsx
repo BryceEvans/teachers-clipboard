@@ -45,6 +45,14 @@ const DragAroundCustomDragLayer = () => {
     let newArr = [...boxes]; // copying the old datas array
     newArr[id] = {top: top, left: left, title: title, deskType: newDeskType}; // replace e.target.value with whatever you want to change it to
     setBoxes(newArr);
+    setMenu({
+      visible: true,
+      id: id,
+      title: title,
+      top: top,
+      left: left,
+      deskType: newDeskType
+    })
   }
 
   const createDesk = useCallback(() => {

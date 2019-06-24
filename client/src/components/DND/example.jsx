@@ -39,20 +39,15 @@ const DragAroundCustomDragLayer = () => {
           return 'desk-horizontal'
     }
   }
+
+  
   const rotateDesk = props => {
     const {id, top, left, title, deskType } = props
-    let newDeskType = switchDesk(deskType)
+    let newDeskType = switchDesk(deskType) // Gets the next desk in the switch progrssion
     let newArr = [...boxes]; // copying the old datas array
     newArr[id] = {top: top, left: left, title: title, deskType: newDeskType}; // replace e.target.value with whatever you want to change it to
-    setBoxes(newArr);
-    setMenu({
-      visible: true,
-      id: id,
-      title: title,
-      top: top,
-      left: left,
-      deskType: newDeskType
-    })
+    setBoxes(newArr); //Sets the new array to state
+    setMenu({ visible: true, id: id, title: title, top: top, left: left,deskType: newDeskType }) //Needed to prevent an intermediary click
   }
 
   const createDesk = useCallback(() => {
@@ -62,6 +57,7 @@ const DragAroundCustomDragLayer = () => {
   return (
     <div> 
       <div>
+        {/* TODO: CopyPasteDesk, Resize +/-, IncreaseLength, Delete, ChangeDeskType, Diagonal Rotations*/}
         <button onClick={() => createDesk()}>Create New Desk</button>
         Future Menu:  
         {menu.visible ? <span>{menu.title}<button onClick={() => rotateDesk(menu)}>Rotate</button> </span> : null}

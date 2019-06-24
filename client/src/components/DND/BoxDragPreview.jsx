@@ -2,6 +2,8 @@ import React, { useEffect, useState, memo } from 'react'
 import Box from './Box'
 const styles = {
   display: 'inline-block',
+  // transform: 'rotate(-35deg)',
+  // WebkitTransform: 'rotate(-45deg)',
 }
 
 const BoxDragPreview = memo(({ title, deskType }) => {

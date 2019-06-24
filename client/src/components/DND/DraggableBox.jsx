@@ -20,6 +20,7 @@ function getStyles(left, top, isDragging) {
 const DraggableBox = props => {
   const [menu, setMenu] = useContext(MenuContext)
   const { id, title, left, top, deskType } = props
+  
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: ItemTypes.BOX, id, left, top, title, deskType },
     collect: monitor => ({

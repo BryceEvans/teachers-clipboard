@@ -3,8 +3,16 @@ import React, { useState } from 'react';
 export const DeskContext = React.createContext()
 export const MenuContext = React.createContext()
 export const StudentContext = React.createContext()
+export const IconContext = React.createContext()
 
-const Store = ({ children }) => {
+
+const Store = ({children}) => {
+    const [iconCount, setIconCount] = useState([
+        { name: 'user', count: 0 },
+        { name: 'exchange', count: 1  },
+        { name: 'eye', count: 2  },
+        { name: 'phone', count: 3  },
+    ])
 
     const [menu, setMenu] = useState({
         visible: false, title: "", id: '', top: '', left: '', students: []
@@ -72,6 +80,7 @@ const Store = ({ children }) => {
     ])
 
     return (
+        <IconContext.Provider value={[iconCount, setIconCount]}>
         <StudentContext.Provider value={[student, setStudent]}>
             <DeskContext.Provider value={[boxes, setBoxes]}>
                 <MenuContext.Provider value={[menu, setMenu]}>
@@ -79,6 +88,7 @@ const Store = ({ children }) => {
                 </MenuContext.Provider>
             </DeskContext.Provider>
         </StudentContext.Provider>
+         </IconContext.Provider>  
     )
 }
 

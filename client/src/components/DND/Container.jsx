@@ -20,12 +20,15 @@ const Container = ({ snapToGrid }) => {
   const [boxes, setBoxes] = useContext(DeskContext)
   const [menu, setMenu] = useContext(MenuContext)
 
+
+  
 function renderBox(item, key) {
   return <DraggableBox key={key} id={key} {...item}/>
 }
 
   const moveBox = useCallback(
-    (id, left, top, title, deskType) => {
+    (id, left, top, title, deskType, students) => {
+      // console.log('students:', students)
       setBoxes(
         update(boxes, {
           [id]: {
@@ -39,7 +42,8 @@ function renderBox(item, key) {
         id: id,
         top: top,
         left: left,
-        deskType: deskType
+        deskType: deskType,
+        students: students,
       })
     },
     [boxes],
@@ -48,7 +52,7 @@ function renderBox(item, key) {
   const [, drop] = useDrop({
     accept: ItemTypes.BOX,
     drop(item, monitor) {
-    console.log('item:', item)
+    // console.log('item:', item)
 
       const delta = monitor.getDifferenceFromInitialOffset()
       let left = Math.round(item.left + delta.x)
@@ -57,9 +61,14 @@ function renderBox(item, key) {
       if (snapToGrid) {
         ;[left, top] = doSnapToGrid(left, top)
       }
-      moveBox(item.id, left, top, item.title, item.deskType)
+      moveBox(item.id, left, top, item.title, item.deskType, item.students)
       return undefined
     },
+    collect(monitor, props) {
+      // console.log('Container props:', props)
+      // console.log('Container monitor:', monitor)
+
+    }
   })
 
   return (

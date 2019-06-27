@@ -46,7 +46,7 @@ const CustomDragLayer = props => {
   function renderItem() {
     switch (itemType) {
       case ItemTypes.BOX:
-        return <BoxDragPreview title={item.title} deskType={item.deskType} />
+        return <BoxDragPreview title={item.title} deskType={item.deskType} students={item.students} />
       default:
         return null
     }
@@ -56,9 +56,7 @@ const CustomDragLayer = props => {
   }
   return (
     <div style={layerStyles}>
-      <div
-        style={getItemStyles(initialOffset, currentOffset, props.snapToGrid)}
-      >
+      <div style={getItemStyles(initialOffset, currentOffset, props.snapToGrid)} >
         {renderItem()}
       </div>
     </div>

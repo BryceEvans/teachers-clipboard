@@ -9,7 +9,13 @@ class StudentCards extends Component {
   this.state = {  }
 
   this.students = [
-    { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [ { name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' } ] },
+    { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [ { name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' } ], counts: [
+      { exchange: null,
+        eye: null,
+        phone: null,
+      }
+    ],
+    Attendance: [ "Present", "Tardy", "Absent" ] },
     { studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false, tags: [ { name: 'SPED', color: 'red' } ] },
     { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [ { name: 'Anxiety', color: 'color' } ] },
     { studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: [  ] },
@@ -59,8 +65,8 @@ class StudentCards extends Component {
           *NOT the names of my acutal students.
         </div>
         <div style={{display: "flex", flexWrap: "wrap"}}>
-          {this.students.map((students) => (
-            <StudentCard key={this.students.studentID} students={students} />
+          {this.students.map((students, ind) => (
+            <StudentCard key={ind} students={students} />
           ))}
         </div>
             <div style={{margin: "10px", textAlign: "center"}}>

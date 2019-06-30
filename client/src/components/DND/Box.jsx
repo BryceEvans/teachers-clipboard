@@ -21,7 +21,7 @@ const Box = ({ title, deskType, students, color }) => {
                 {title}
             </div>
             <div style={{ backgroundColor: "teal"}} >
-                <DroppableArea/>
+                <DroppableArea title={title} students={students} />
             </div>
             <div>
                 {students && students.map(student => {

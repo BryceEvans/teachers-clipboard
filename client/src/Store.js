@@ -6,40 +6,62 @@ export const StudentContext = React.createContext()
 export const IconContext = React.createContext()
 
 
-const Store = ({children}) => {
+const Store = ({ children }) => {
     const [iconCount, setIconCount] = useState([
         { name: 'user', count: 0 },
-        { name: 'exchange', count: 1  },
-        { name: 'eye', count: 2  },
-        { name: 'phone', count: 3  },
+        { name: 'exchange', count: 1 },
+        { name: 'eye', count: 2 },
+        { name: 'phone', count: 3 },
     ])
 
     const [menu, setMenu] = useState({
         visible: false, title: "", id: '', top: '', left: '', students: []
     })
 
+
+    // Attendance: [ "Present", "Tardy", "Absent" ]
+
     const [boxes, setBoxes] = useState([
-        { top: 20, left: 80, title: 'Desk1', deskType: "desk-horizontal", students: [ 
-            { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [{ name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' }] },
-            { studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false, tags: [{ name: 'SPED', color: 'red' }] },
-        ]},
-        { top: 400, left: 20, title: 'Desk2', deskType: "desk-long-horizontal", students: [
-            { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [{ name: 'Anxiety', color: 'color' }] },
-        ]},
-        { top: 320, left: 220, title: 'Desk4', deskType: "desk-long-vertical", students: []},
-        { top: 220, left: 120, title: 'Desk3', deskType: "desk-vertical", students: []},
-        { top: 420, left: 320, title: 'Desk5', deskType: "desk-square", students: []},
-        { top: 60, left: 400, title: 'Desk6', deskType: "desk-square-45", students: []},
-        { top: 200, left: 340, title: 'Desk7', deskType: "desk-circle", students: []},
-        { top: 160, left: 400, title: 'Desk8', deskType: "desk-medium-circle", students: []},
-        { top: 140, left: 500, title: 'Desk9', deskType: "desk-large-circle", students: []},
-        { top: 460, left: 400, title: 'Desk10', deskType: "desk-square-45", students: []},
+        {
+            top: 20, left: 80, title: 'Desk1', deskType: "desk-horizontal",
+            students: [
+                {
+                    studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true,
+                    tags: [{ name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' }],
+                    counts: { exchange: null, eye: null, phone: null }
+                },
+                {
+                    studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false,
+                    tags: [{ name: 'SPED', color: 'red' }],
+                    counts: { exchange: null, eye: null, phone: null }
+                },
+            ]
+        },
+        {
+            top: 400, left: 20, title: 'Desk2', deskType: "desk-long-horizontal",
+            students: [
+                {
+                    studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false,
+                    tags: [{ name: 'Anxiety', color: 'teal' }],
+                    counts: { exchange: null, eye: null, phone: null }
+                },
+            ]
+        },
+
+        { top: 320, left: 220, title: 'Desk4', deskType: "desk-long-vertical", students: [''] },
+        { top: 220, left: 120, title: 'Desk3', deskType: "desk-vertical", students: [''] },
+        { top: 420, left: 320, title: 'Desk5', deskType: "desk-square", students: [] },
+        { top: 60, left: 400, title: 'Desk6', deskType: "desk-square-45", students: [] },
+        { top: 200, left: 340, title: 'Desk7', deskType: "desk-circle", students: [] },
+        { top: 160, left: 400, title: 'Desk8', deskType: "desk-medium-circle", students: [] },
+        { top: 140, left: 500, title: 'Desk9', deskType: "desk-large-circle", students: [] },
+        { top: 460, left: 400, title: 'Desk10', deskType: "desk-square-45", students: [] },
     ])
 
     const [student, setStudent] = useState([
         { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [{ name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' }] },
         { studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false, tags: [{ name: 'SPED', color: 'red' }] },
-        { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [{ name: 'Anxiety', color: 'color' }] },
+        { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [{ name: 'Anxiety', color: 'orange' }] },
         { studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: [] },
         { studentID: 5, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: [] },
         { studentID: 6, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: [] },
@@ -81,14 +103,14 @@ const Store = ({children}) => {
 
     return (
         <IconContext.Provider value={[iconCount, setIconCount]}>
-        <StudentContext.Provider value={[student, setStudent]}>
-            <DeskContext.Provider value={[boxes, setBoxes]}>
-                <MenuContext.Provider value={[menu, setMenu]}>
-                    {children}
-                </MenuContext.Provider>
-            </DeskContext.Provider>
-        </StudentContext.Provider>
-         </IconContext.Provider>  
+            <StudentContext.Provider value={[student, setStudent]}>
+                <DeskContext.Provider value={[boxes, setBoxes]}>
+                    <MenuContext.Provider value={[menu, setMenu]}>
+                        {children}
+                    </MenuContext.Provider>
+                </DeskContext.Provider>
+            </StudentContext.Provider>
+        </IconContext.Provider>
     )
 }
 

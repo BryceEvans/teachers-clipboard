@@ -34,7 +34,7 @@ function getItemStyles(initialOffset, currentOffset, isSnapToGrid) {
   }
 }
 const CustomDragLayer = props => {
-  const {itemType,isDragging,item,initialOffset,currentOffset,
+  const {itemType, isDragging, item, initialOffset,currentOffset,
     } = useDragLayer(monitor => ({
       item: monitor.getItem(),
       itemType: monitor.getItemType(),
@@ -44,9 +44,15 @@ const CustomDragLayer = props => {
     }))
   
   function renderItem() {
+    // console.log("What is this item..", item)
+    // console.log("What is this students..", typeof(item.students))
+    // let x = ["a", "b"]
+    // x.push("c")
+    // console.log('x:', x)
+    
     switch (itemType) {
       case ItemTypes.BOX:
-        return <BoxDragPreview title={item.title} deskType={item.deskType} />
+        return <BoxDragPreview title={item.title} deskType={item.deskType} students={item.students} />
       default:
         return null
     }
@@ -56,9 +62,7 @@ const CustomDragLayer = props => {
   }
   return (
     <div style={layerStyles}>
-      <div
-        style={getItemStyles(initialOffset, currentOffset, props.snapToGrid)}
-      >
+      <div style={getItemStyles(initialOffset, currentOffset, props.snapToGrid)} >
         {renderItem()}
       </div>
     </div>

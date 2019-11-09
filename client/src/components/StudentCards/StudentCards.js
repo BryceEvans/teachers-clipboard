@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-
+import React, { useContext } from 'react';
+import {DeskContext} from '../../Store'
 import StudentCard from './StudentCard';
 
-class StudentCards extends Component {
-  constructor(props) {
-    super(props);
-  
-  this.state = {  }
+const StudentCards = () => {
+  const [boxes, setBoxes] = useContext(DeskContext)
+  console.log('StudentCards boxes:', boxes)
 
-  this.students = [
-    { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [ { name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' } ], counts: [
-      { exchange: null,
-        eye: null,
-        phone: null,
-      }
-    ],
-    Attendance: [ "Present", "Tardy", "Absent" ] },
+  const checkStudent = (index) => {
+    let myArr;
+    if (boxes[index].students !== []) {
+      myArr = myArr.push(boxes[index].students)
+    }
+    console.log("StudentCards myArr: ", myArr)
+  }
+  const students = [
+    { studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: [ { name: 'ESL', color: 'purple' }, { name: 'Vision', color: 'blue' }]},
     { studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false, tags: [ { name: 'SPED', color: 'red' } ] },
     { studentID: 3, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: [ { name: 'Anxiety', color: 'color' } ] },
     { studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: [  ] },
@@ -56,16 +55,16 @@ class StudentCards extends Component {
     { studentID: 39, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: [  ]  },
     { studentID: 40, firstName: 'Another', lastName: 'Student', hallPassPrivledges: false, tags: [  ]  },
   ]
-}
 
-  render() { 
+
     return ( 
       <div>
         <div style={{margin: "10px", textAlign: "center"}}>
           *NOT the names of my acutal students.
         </div>
         <div style={{display: "flex", flexWrap: "wrap"}}>
-          {this.students.map((students, ind) => (
+          {console.log("box student", boxes[0].students)}
+          {students.map((students, ind) => (
             <StudentCard key={ind} students={students} />
           ))}
         </div>
@@ -74,7 +73,7 @@ class StudentCards extends Component {
             </div>
       </div>
     );
-  }
+  
 }
 
 export default StudentCards;

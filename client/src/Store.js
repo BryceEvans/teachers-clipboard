@@ -48,8 +48,8 @@ const Store = ({ children }) => {
             ]
         },
 
-        { top: 320, left: 220, title: 'Desk4', deskType: "desk-long-vertical", students: [''] },
-        { top: 220, left: 120, title: 'Desk3', deskType: "desk-vertical", students: [''] },
+        { top: 320, left: 220, title: 'Desk4', deskType: "desk-long-vertical", students: [ ] },
+        { top: 220, left: 120, title: 'Desk3', deskType: "desk-vertical", students: [ ] },
         { top: 420, left: 320, title: 'Desk5', deskType: "desk-square", students: [] },
         { top: 60, left: 400, title: 'Desk6', deskType: "desk-square-45", students: [] },
         { top: 200, left: 340, title: 'Desk7', deskType: "desk-circle", students: [] },

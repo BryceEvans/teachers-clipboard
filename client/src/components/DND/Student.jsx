@@ -47,6 +47,7 @@ const Student = props => {
     
             },
             end(monitor) {
+                //ends with the object being carried
                 console.log('END Student monitor:', monitor)
                 // console.log("Student monitor.didDrop()", monitor.didDrop())
                 // console.log("Student monitor.getItem()", monitor.getItem())

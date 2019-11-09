@@ -5,18 +5,22 @@ import { DeskContext } from '../../Store'
 
 
 const DroppableArea = ({title, students}) => {
-    console.log('DROPPABLE students:', students.length)
+    console.log('students type:', students)
+    
+    // console.log('DROPPABLE students:', students.length)
+
 
     const [items, setItems] = useState([]);
     const [boxes, setBoxes] = useContext(DeskContext)
-    const appendItem = useCallback(
-        item => {
-            console.log('DROPPABLE item being carried:', item)
-            console.log("DROPPABLE In appenditem call")
-            setItems(items => [...items, item]);
-        },
-        [setItems]
-    );
+
+    // const appendItem = useCallback(
+    //     item => {
+    //         console.log('DROPPABLE item being carried:', item)
+    //         console.log("DROPPABLE In appenditem call")
+    //         setItems(items => [...items, item]);
+    //     },
+    //     [setItems]
+    // );
 
     const [collectedProps, drop] = useDrop({
         accept: ItemTypes.STUDENT,
@@ -24,6 +28,7 @@ const DroppableArea = ({title, students}) => {
         drop(item, monitor) {
             // console.log('DROPPABLE monitor.getITem:', monitor.getItem())
             console.log('DROPPABLE item:', item)
+            students.push(item)
             // console.log('DROPPABLE getDropResult():', monitor.getDropResult())
 
             return console.log(`DROPPABLE returned ${title} ${students.length}`)
@@ -41,8 +46,8 @@ const DroppableArea = ({title, students}) => {
     });
 
 
-    const listItems = items.map((item, idx) => (
-        <div key={idx} className="dropped-item" />));
+    // const listItems = items.map((item, idx) => (
+    //     <div key={idx} className="dropped-item" />));
 
     return (
         <div>
@@ -50,7 +55,7 @@ const DroppableArea = ({title, students}) => {
                 ref={drop} >
                 Drop Target 
             </div>
-            {listItems}
+            {/* {listItems} */}
         </div>
     );
 };

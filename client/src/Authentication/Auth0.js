@@ -14,7 +14,6 @@ class Auth {
             responseType: 'token id_token',
             scope: 'openid profile email'
         })
-        this.getProfile = this.getProfile.bind(this)
         this.handleAuthentication = this.handleAuthentication.bind(this)
         this.isAuthenticated = this.isAuthenticated.bind(this)
         this.signIn = this.signIn.bind(this)
@@ -25,9 +24,6 @@ class Auth {
         // this.getAccessToken = this.getAccessToken.bind(this)
     }
 
-    getProfile() {
-        return this.profile
-    }
 
     getIdTokenPayload() {
         return this.getIdTokenPayload()
@@ -56,15 +52,6 @@ class Auth {
         })
       }
 
-    // getAccessToken() {
-    //     const accessToken = localStorage.getItem('access_token');
-    //     if (!accessToken) {
-    //       throw new Error('No Access Token found');
-    //     }
-    //     return accessToken;
-    //   }
-    
-
     //Called immediately after being redirected from auth0
     //Fetches user details and idToken
     handleAuthentication() {
@@ -79,19 +66,6 @@ class Auth {
           });
         })
       }
-
-      // OLD WAY
-      // setSession(authResult) {
-      //     console.log("SetSession was called")
-      //     console.log("Auth Result Baby", authResult)
-      //   this.accessToken = authResult.accessToken;
-      //   // console.log('accessToken', this.accessToken);
-      //   this.idToken = authResult.idToken;
-      //   // console.log('this.idToken', this.idToken);
-      //   this.profile = authResult.idTokenPayload;
-      //   // console.log('this.profile', this.profile);
-      //   this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
-      // }
 
 
       setSession(authResult) {

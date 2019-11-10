@@ -1,46 +1,119 @@
-import React from 'react'
-import Student from './Student'
+import React, { useState, useCallback } from 'react'
+import { DragSource } from 'react-dnd'
+// import Colors from './Colors'
 
-import DroppableArea from './DroppableArea'
-
-const styles = {
+const style = {
     border: '1px solid gray',
-    width: '80px',
-    height: '60px',
+    width: '70px',
+    height: '30px',
     padding: '3px',
     cursor: 'move',
+    backgroundColor: 'lightgrey',
+
 }
 
-const Box = ({ title, deskType, students, color }) => {
-    const backgroundColor = color ? 'lightgrey' : 'white'
-    let x = switchStyle(deskType, backgroundColor)
+const Box = ({ title, deskType, color = 'lightgray',
+    children,
+    isDragging,
+    connectDragSource,
+    forbidDrag,
+    onToggleForbidDrag, }) => {
+    const opacity = isDragging ? 0.4 : 1
+    let backgroundColor = color ? 'lightgray' : 'white'
 
-    return (
-        <div style={x} >
-            <div style={{backgroundColor: "orange"}}>
-                {title}
-            </div>
-            <div style={{ backgroundColor: "teal"}} >
-                <DroppableArea title={title} students={students} />
-            </div>
-            <div>
-                {students && students.map(student => {
-                    return (
-                        <div key={student.studentID} >
-                            <Student student={student}/>
-                        </div>
-                    )
-                })}
-            </div>
-        </div>
+    // switch (color) {
+    //   case Colors.YELLOW:
+    //     backgroundColor = 'lightgoldenrodyellow'
+    //     break
+    //   case Colors.BLUE:
+    //     backgroundColor = 'lightblue'
+    //     break
+    //   default:
+    //     break
+    // }
+    return connectDragSource(
+        <div
+            style={{
+                ...style,
+                backgroundColor,
+                opacity,
+                cursor: forbidDrag ? 'default' : 'move',
+            }}
+        >
+            <input
+                type="checkbox"
+                checked={forbidDrag}
+                onChange={onToggleForbidDrag}
+            />
+            <small>No drag</small>
+            {/* {children} */}
+        </div>,
     )
 }
+
+const SourceBox = DragSource(
+    props => props.color + '',
+    {
+        canDrag: props => !props.forbidDrag,
+        beginDrag: () => ({}),
+    },
+    (connect, monitor) => ({
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging(),
+    }),
+)(Box)
+
+const StatefulSourceBox = props => {
+    const [forbidDrag, setForbidDrag] = useState(false)
+    const handleToggleForbidDrag = useCallback(() => {
+        setForbidDrag(!forbidDrag)
+    }, [forbidDrag])
+    return (
+        <SourceBox
+            {...props}
+            // forbidDrag={forbidDrag}
+            // onToggleForbidD  rag={() => handleToggleForbidDrag()}
+        />
+    )
+}
+// const backgroundColor = color ? 'lightgrey' : 'white'
+
+// let x = switchStyle(deskType, backgroundColor)
+
+// return (
+//   <div style={x}>
+//       {title}
+//   </div>
+// )
+// }
+
+export default StatefulSourceBox
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // This takes in the deskType passed from Container and checks style. Grabs css for that style
 const switchStyle = (deskType, backgroundColor) => {
     switch (deskType) {
         case 'desk-horizontal':
-            return Object.assign({}, styles, { backgroundColor });
+            return Object.assign({}, style, { backgroundColor });
         case 'desk-long-horizontal':
             return Object.assign({}, styles2, { backgroundColor });
         case 'desk-vertical':
@@ -62,8 +135,13 @@ const switchStyle = (deskType, backgroundColor) => {
     }
 }
 
-export default Box
-
+const styles = {
+    border: '1px solid gray',
+    width: '80px',
+    height: '60px',
+    padding: '3px',
+    cursor: 'move',
+}
 
 const styles2 = {
     border: '1px solid gray',

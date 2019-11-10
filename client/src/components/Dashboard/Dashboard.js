@@ -1,18 +1,24 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import HTML5Backend from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
 import Example from "../DND/example"
-import withDragDropContext from '../DND/fix';
 
 
 import Tracker from '../Tracker/Tracker';
+import SecuredRoute from "../../Authentication/SecuredRoute";
+import SplashHomeNav from "../NavigationBar/Splash&HomeNav";
+import auth from "../../Authentication/Auth0";
+import TopBar from "../TopBar/TopBar";
 
 const Dashboard = () => {
-      return ( 
+      return (
+  <DndProvider backend={HTML5Backend}>
         <div>
-          <Example />
-
+            <SplashHomeNav />
+            <Example />
+            <TopBar />
             <Route path='/dashboard/tracker' component={ Tracker } />
             
             {/* 
@@ -23,9 +29,9 @@ const Dashboard = () => {
             */}
 
       </div>
-    
+  </DndProvider>
     )
   }
 
 
-export default withDragDropContext(Dashboard)
+export default (Dashboard)

@@ -6,12 +6,12 @@ const BottomRow = () => {
     const [iconCount, setIconCount] = useContext(IconContext)
 
   const clickHandler = (iconName, iconCount, key) => {
-    console.log("Icon Count obj:", iconCount)
+    // console.log("Icon Count obj:", iconCount)
     setIconCount({...iconCount, key: { name: iconName, count: iconCount + 1 } });
   }
 
   function renderIcon(icon, key) {
-    console.log("ICON: ", icon)
+    // console.log("ICON: ", icon)
     return (
       <div style={{display: "flex", flexDirection: "column", border: "blue solid 1px"}} key={key} >
         <div onClick={() => clickHandler(icon.name, icon.count, key)}>

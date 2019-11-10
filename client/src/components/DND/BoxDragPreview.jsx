@@ -2,9 +2,11 @@ import React, { useEffect, useState, memo } from 'react'
 import Box from './Box'
 const styles = {
   display: 'inline-block',
+  // transform: 'rotate(-35deg)',
+  // WebkitTransform: 'rotate(-45deg)',
 }
 
-const BoxDragPreview = memo(({ title, deskType }) => {
+const BoxDragPreview = memo(({ title, deskType, students }) => {
 
   let [tickTock, setTickTock] = useState(false)
   
@@ -18,7 +20,7 @@ const BoxDragPreview = memo(({ title, deskType }) => {
 
   return (
     <div style={styles}>
-      <Box title={title} deskType={deskType} color={tickTock = true} />
+      <Box title={title} deskType={deskType} students={students} color={tickTock = true} />
     </div>
   )
 })

@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 const SplashFeatures = () => {
     return (
-        <LandingFeatures id="features">
+        <EclipmentFeatures id="features">
             <h2>
                 These are the great features...
             </h2>
-        </LandingFeatures>
+        </EclipmentFeatures>
     )
 }
 
 export default SplashFeatures
 
-const LandingFeatures = styled.div`
-background-color: green;
+const EclipmentFeatures = styled.div`
+background-color: lightblue;
 padding-top: 55px;
 border: 1px solid pink;
 height: 100vh;

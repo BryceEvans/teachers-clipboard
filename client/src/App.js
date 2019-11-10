@@ -1,15 +1,25 @@
 import React from 'react';
-import TopBar from './components/TopBar/TopBar';
+import { Route } from 'react-router-dom'
+
 import Dashboard from './components/Dashboard/Dashboard';
 import SplashMain from './components/SplashPage/SplashMain'
-
+import SplashHomeNav from "./components/NavigationBar/Splash&HomeNav";
+import Callback from "./Authentication/Callback";
+import auth from "./Authentication/Auth0"
+import SecuredRoute from "./Authentication/SecuredRoute";
 
 const App = () => {
     return (
         <div>
-            <SplashMain />
-            <TopBar />
-            <Dashboard />
+
+            <Route exact path="/" render={props => <div> <SplashHomeNav auth={auth} {...props} /> <SplashMain auth={auth} {...props} /> </div> } />
+
+            <Route path="/callback" render={(props) => {return <Callback {...props} />}} />
+
+            <SecuredRoute path='/home' component={Dashboard} auth={auth} />
+            {/*<SecuredRoute path='/home' component={SplashHomeNav} auth={auth} />*/}
+            {/*<SecuredRoute path='/home' component={TopBar} auth={auth} />*/}
+
         </div>
     );
 }

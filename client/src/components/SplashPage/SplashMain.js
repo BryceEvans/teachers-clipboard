@@ -40,8 +40,7 @@ const SplashMain = ({ auth }) => {
         <SplashFeatures />
         {/* <Pricing /> */}
         <BackToTopContainer>
-          <a href="/#">Back to top</a>
-          <div> HELLO. THIS IS THE BOTTOM</div>
+          <a href="/#"><h1>Top</h1></a>
         </BackToTopContainer>
       </Body>
     </WrapperContainer>

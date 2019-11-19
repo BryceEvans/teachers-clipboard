@@ -1,115 +1,119 @@
-import React from 'react'
+import React, {useContext} from 'react';
 import styled from 'styled-components'
 import Nav from "./Nav"
 import auth from '../../Authentication/Auth0'
-// import SearchBar from '../SearchBar'
-// import SideBar from '../SideBar'
+import {NavContext} from '../../Store'
+import ListItem from "@material-ui/core/ListItem";
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import List from "@material-ui/core/List";
 
-  const SplashHomeNav = (props) => {
+const S_ListItemIcon = styled(ListItemIcon)`
+	// height: 59px;
+    // z-index: 9999;
+`;
+const S_List = styled(List)`
+	// height: 59px;
 
+`;
+
+const TopNavigation = (props) => {
+    console.log("HERE ARE THE PROPS", props);
     // console.log("Inside S&H tokenpayload", auth.getIdTokenPayload())
-      let userName = localStorage.getItem("id_token_payload_name")
+    let userName = localStorage.getItem("id_token_payload_name");
+
+    const [open, setOpen] = useContext(NavContext);
 
     function login() {
-      auth.signIn();
+        auth.signIn();
     }
 
     function logout() {
-      auth.signOut();
+        auth.signOut();
     }
 
-    // function openSide() {
-    //   props.openSide()
-    //   console.log(props.open)
-    // }
-    //
-    // function closeSide() {
-    //   props.closeSide()
-    //   console.log(props.open)
-    // }
-
-
-    const { isAuthenticated } = auth;
-    console.log(`Check in SplashNav for authentication: ${isAuthenticated()}`)
+    const {isAuthenticated} = auth;
     return (
-      // {
-      !isAuthenticated()
-        ? (
-          <VisitorContainer id="HeaderContainer">
-            <AppName >
-              {/* <Logo src={logo} /> */}
-              {/* This href="/" will reload the page. Replace with "#" to scroll */}
-              <a href="/#">
-                <h1>Eclipment</h1>
-              </a>
-            </AppName>
-  
-            <VisitorsNav id="VisitorsNav">
-              <Nav id="Nav" />
-            </VisitorsNav>
-            
-            <LinkStyled id="LinkStyled" type="button" onClick={login}>
-              Sign in
-            </LinkStyled>
+        // {
+        !isAuthenticated()
+            ? (
+                <VisitorContainer id="HeaderContainer">
+                    <AppName>
+                        <a href="/#">
+                            <h1>Eclipment</h1>
+                        </a>
+                    </AppName>
 
-          </VisitorContainer>
-        )
-        : (
-          <UserContainer id="UserContainer" isLoggedIn>
-              <NameButton id="AppName_SideButton">
-                  {/*{props.isOpen ?*/}
-                  {/*( <SideBarButton id="SideBarButton" onClick={closeSide}> X </SideBarButton> )*/}
-                  {/*:*/}
-                  {/*( <SideBarButton id="SideBarButton" onClick={openSide}> ☰ </SideBarButton> )*/}
-                  {/*}*/}
-                  <AppName id="AppName"> <h1>Eclipment</h1> </AppName>
-              </NameButton>
+                    <VisitorsNav id="VisitorsNav">
+                        <Nav id="Nav"/>
+                    </VisitorsNav>
 
-              <SearchBarDiv>
-                	{/*<SearchBar />*/}
-                  <h3>Welcome, {userName}!</h3>
-              </SearchBarDiv>
+                    <LinkStyled id="LinkStyled" type="button" onClick={login}>
+                        Sign in
+                    </LinkStyled>
 
-              <UsersNav id="UsersNav">
-                  <LinkStyled id="LinkStyled" type="button" onClick={logout}>
-                      Sign out
-                  </LinkStyled>
-              </UsersNav>
+                </VisitorContainer>
+            )
+            :
+            (
+                <UserContainer id="UserContainer" isLoggedIn>
 
-            </UserContainer>
+                    <NameButton id="AppName_SideButton">
+                        <S_List>
+                            <ListItem>
+                                <S_ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
+                                    {open ? <CloseIcon/> : <MenuIcon/>}
+                                </S_ListItemIcon>
+                            </ListItem>
+                        </S_List>
+                        <AppName id="AppName"><h1>Eclipment</h1></AppName>
+                    </NameButton>
 
-          )
+                    <SearchBarDiv>
+                        {/*<SearchBar />*/}
+                        <h3>Welcome, {userName}!</h3>
+                    </SearchBarDiv>
+
+                    <UsersNav id="UsersNav">
+                        <LinkStyled id="LinkStyled" type="button" onClick={logout}>
+                            Sign out
+                        </LinkStyled>
+                    </UsersNav>
+
+                </UserContainer>
+
+            )
     )
-  }
+};
 
 
-export default SplashHomeNav;
+export default TopNavigation;
 
-// styles
 const UserContainer = styled.div`
 	background: #F7F8FA;
 	position: fixed;
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 	width: 100%;
 	top: 0;
-  align-items: center;
-  height: 60px;
-  z-index: 2;
-  border-bottom: 1px solid #525A65;
-
-  justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    // padding-left: 60px;
+    border-bottom: 1px solid #525A65;
+    justify-content: space-around;
+    z-index: 2000;
   
-`
+`;
 const NameButton = styled.div`
 	display: flex;
   width: 20%;
   min-width: 185px;
-`
+`;
 const SearchBarDiv = styled.div`
 	display: flex;
 	width: 60%;
-`
+`;
 const UsersNav = styled.div`
   display: flex;
   width: 10%;
@@ -171,7 +175,7 @@ border: 1px solid #525A65;
 //   color: white;
 // }
 
-`
+`;
 
 const AppName = styled.div`
   align-self: center;

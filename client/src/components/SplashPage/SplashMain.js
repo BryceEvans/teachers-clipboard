@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import SplashWhy from './SplashWhy';
 import SplashFeatures from './SplashFeatures';
+import SideNav from '../NavigationBar/SideNavigation.js'
 // import Pricing from './Pricing';
 
 const SplashMain = ({ auth }) => {

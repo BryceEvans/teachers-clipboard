@@ -4,6 +4,7 @@ export const DeskContext = React.createContext()
 export const MenuContext = React.createContext()
 export const StudentContext = React.createContext()
 export const IconContext = React.createContext()
+export const NavContext = React.createContext()
 
 
 const Store = ({ children }) => {
@@ -14,12 +15,13 @@ const Store = ({ children }) => {
         { name: 'phone', count: 3 },
     ])
 
+    const [open, setOpen] = useState(false);
+
+
     const [menu, setMenu] = useState({
         visible: false, title: "", id: '', top: '', left: '', students: []
     })
 
-
-    // Attendance: [ "Present", "Tardy", "Absent" ]
 
     const [boxes, setBoxes] = useState([
         {
@@ -106,7 +108,9 @@ const Store = ({ children }) => {
             <StudentContext.Provider value={[student, setStudent]}>
                 <DeskContext.Provider value={[boxes, setBoxes]}>
                     <MenuContext.Provider value={[menu, setMenu]}>
-                        {children}
+                        <NavContext.Provider value={[open, setOpen]}>
+                         {children}
+                        </NavContext.Provider>
                     </MenuContext.Provider>
                 </DeskContext.Provider>
             </StudentContext.Provider>

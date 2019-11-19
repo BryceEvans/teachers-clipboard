@@ -76,7 +76,7 @@ const DragAroundCustomDragLayer = () => {
 // }})
 
   return (
-    <div> 
+    <div className="DnD">
       <div>
         {/* TODO: CopyPasteDesk, Resize +/-, IncreaseLength, Delete, ChangeDeskType, Diagonal Rotations*/}
         <button onClick={() => createDesk()}>Create New Desk</button>

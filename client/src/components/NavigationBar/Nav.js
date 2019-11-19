@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import auth from '../../Authentication/Auth0'
-import { Link } from 'react-router-dom'
 
 const Nav = () => {
   
@@ -11,13 +10,13 @@ const Nav = () => {
       <li><a href="#why">Why Eclipment</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      {/* {auth.isAuthenticated() ? <li><a href="/home">DASHBOARD</a></li> : null} */}
     </NavContainer>
     )}
 
   if (auth.isAuthenticated()) {
       return (
       <NavContainer id="UserNavContainer">
+
       </NavContainer>
       )
     } 

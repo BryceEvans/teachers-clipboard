@@ -2,8 +2,8 @@ import React, { useState, useCallback, useEffect, useContext } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import { getEmptyImage } from 'react-dnd-html5-backend'
-import Box from './Box'
-import { MenuContext, DeskContext } from '../../Store'
+import Desk from './Desk'
+import { MenuContext, DraggableDeskContext } from '../../Store'
 
 function getStyles(left, top, isDragging) {
     const transform = `translate3d(${left}px, ${top}px, 0)`
@@ -17,21 +17,18 @@ function getStyles(left, top, isDragging) {
         // height: isDragging ? 0 : '',
     }
 }
-const DraggableBox = props => {
+
+const DraggableDesk = props => {
+    const [canDragDesk, setCanDragDesk] = useContext(DraggableDeskContext)
     const [menu, setMenu] = useContext(MenuContext)
     const { id, title, left, top, deskType, students } = props
 
-    const [, drag, preview] = useDrag({
+    const [{ isDragging }, drag, preview] = useDrag({
         item: { type: ItemTypes.BOX, id, left, top, title, deskType, students },
-
-        collect(monitor, props) {
-            // console.log('Draggable props:', props)
-            // console.log('Draggable monitor:', monitor)
-
-        }
-        // collect: monitor => ({
-        //     isDragging: monitor.isDragging(),
-        // }),
+        canDrag: !canDragDesk,
+        collect: monitor => ({
+            isDragging: monitor.isDragging(),
+        }),
     })
     useEffect(() => {
         preview(getEmptyImage(), { captureDraggingState: true })
@@ -52,10 +49,9 @@ const DraggableBox = props => {
     return (
         <div onClick={() => boxInfo(props)} onMouseDown={() => boxInfo(props)}
             style={getStyles(left, top)} ref={drag}>
-                
-            <Box title={title} deskType={deskType} students={students} />
+            <Desk title={title} deskType={deskType} students={students} />
         </div>
     )
 }
 
-export default DraggableBox
+export default DraggableDesk

@@ -4,20 +4,18 @@ import HTML5Backend from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
 import MainDnD from "../DND/MainDnD"
-
-
-import Tracker from '../Tracker/Tracker';
-import SecuredRoute from "../../Authentication/SecuredRoute";
 import TopNavigation from "../NavigationBar/TopNavigation";
 import SideNavigation from "../NavigationBar/SideNavigation";
-import auth from "../../Authentication/Auth0";
-import TopBar from "../TopBar/TopBar";
 
 const Dashboard = () => {
       return (
   <DndProvider backend={HTML5Backend}>
         <div>
-            <MainDnD />
+            <Route exact path='/home' component={ MainDnD } />
+            <Route path='/home/second' component={ MainDnD } />
+            <Route path='/home/third' component={ MainDnD } />
+
+            {/*<MainDnD />*/}
             <TopNavigation />
             <SideNavigation />
             {/*<TopBar />*/}
@@ -33,7 +31,7 @@ const Dashboard = () => {
       </div>
   </DndProvider>
     )
-  }
+  };
 
 
 export default (Dashboard)

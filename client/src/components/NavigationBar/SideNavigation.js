@@ -1,24 +1,28 @@
 import React, {useContext} from 'react';
+import {Link, Route, Switch} from "react-router-dom";
 import {NavContext} from '../../Store'
 import clsx from 'clsx';
-import purple from '@material-ui/core/colors/purple';
-
 import Tooltip from '@material-ui/core/Tooltip';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Paper from "@material-ui/core/Paper";
 import ClassIcon from '@material-ui/icons/Class';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import styled from "styled-components";
+import FolderIcon from '@material-ui/icons/Folder';
+import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
+import ListSubheader from "@material-ui/core/ListSubheader";
 
 const S_ListItemIcon = styled(ListItemIcon)`
 	// height: 59px;
@@ -28,6 +32,23 @@ const S_List = styled(List)`
 	height: 59px;
 
 `;
+
+function ItemOne(theme) {
+    return (
+        <div>
+            <div>Item 1</div>
+            <p> Here it is </p>
+        </div>
+    );
+}
+
+function ItemTwo(theme) {
+    return (
+        <Paper>
+            <div>Item two</div>
+        </Paper>
+    );
+}
 
 const MiniDrawer = () => {
     const [open, setOpen] = useContext(NavContext);
@@ -50,7 +71,7 @@ const MiniDrawer = () => {
                 }}
                 open={open}
             >
-                <S_List>
+                <S_List >
                     <ListItem>
                         <S_ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
                             {open ? <CloseIcon/> : <MenuIcon/>}
@@ -60,28 +81,28 @@ const MiniDrawer = () => {
 
                 <Divider/>
 
-                <List>
+                <List subheader={<ListSubheader>Classes</ListSubheader>}>
                     {[
-                        {title: 'First', color: "red"},
-                        {title: 'Second', color: "blue"},
-                        {title: 'Third', color: "teal"},
-                        {title: 'Fourth', color: "pink"},
-                        {title: 'Fifth', color: "violet"},
-                        {title: 'Sixth', color: "orange"},
-                        {title: 'Seventh', color: "purple"},
-                        {title: 'Eighth', color: "#00ff00"}
-                    ].map((myClass, index) => {
+                        {title: 'First class is the best', color: "red", icon: "ClassIcon"},
+                        {title: 'Second', color: "blue", icon: "ClassIcon"},
+                        {title: 'Third', color: "teal", icon: "ClassIcon"},
+                        {title: 'Fourth', color: "pink", icon: "ClassIcon"},
+                        {title: 'Fifth', color: "violet", icon: "ClassIcon"},
+                        {title: 'Sixth', color: "orange", icon: "ClassIcon"},
+                        {title: 'Seventh', color: "purple", icon: "ClassIcon"},
+                        {title: 'Eighth', color: "#00ff00", icon: "ClassIcon"}
+                    ].map((classObject, index) => {
                             return (
-                                !open ? <Tooltip title={myClass.title} placement="right" aria-label={myClass.title}>
-                                        <ListItem button key={myClass.title}>
-                                            <ListItemIcon>{<ClassIcon htmlColor={myClass.color}/>}</ListItemIcon>
-                                            <ListItemText primary={myClass.title}/>
+                                !open ? <Tooltip title={classObject.title} placement="right" aria-label={classObject.title}>
+                                        <ListItem button key={classObject.title} component={Link} to={`${classObject.title}`}>
+                                            <ListItemIcon>{<FolderIcon htmlColor={classObject.color}/>}</ListItemIcon>
+                                            <ListItemText primary={classObject.title}/>
                                         </ListItem>
                                     </Tooltip>
                                     :
-                                    <ListItem button key={myClass.title}>
-                                        <ListItemIcon>{<ClassIcon htmlColor={myClass.color}/>}</ListItemIcon>
-                                        <ListItemText primary={myClass.title}/>
+                                    <ListItem button key={classObject.title} component={Link} to={`${classObject.title}`}>
+                                        <ListItemIcon>{<ClassIcon htmlColor={classObject.color}/>}</ListItemIcon>
+                                        <ListItemText primary={classObject.title}/>
                                     </ListItem>
                             )
                         }
@@ -108,6 +129,7 @@ const MiniDrawer = () => {
 
 
                 <Divider/>
+
                 <Tooltip title={"Settings"} placement={"right"}>
                     <ListItem button key={'Settings'}>
                         <ListItemIcon>{<SettingsIcon/>}</ListItemIcon>
@@ -115,6 +137,21 @@ const MiniDrawer = () => {
                     </ListItem>
                 </Tooltip>
 
+                <Divider/>
+
+
+                <Tooltip title={"Logout"} placement={"right"}>
+                    <ListItem button component={Link} to="/home/one">
+                        <ListItemIcon>{<ExitToAppIcon/>}</ListItemIcon>
+                        <ListItemText primary={'Logout'}/>
+                    </ListItem>
+                </Tooltip>
+
+
+                <Switch>
+                    <Route path="/home/one" component={ItemOne}/>
+                    <Route path="/two" component={ItemTwo}/>
+                </Switch>
 
             </Drawer>
             <main className={classes.content}>
@@ -152,7 +189,6 @@ const drawerWidth = 200;
 
 
 const useStyles = makeStyles(theme => ({
-
     root: {
         display: 'flex',
         zIndex: -1,

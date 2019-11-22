@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useContext } from 'react'
 import { useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
-import DraggableBox from './DraggableBox'
+import DraggableDesk from './DraggableDesk'
 import doSnapToGrid from './snapToGrid'
 import update from 'immutability-helper'
 import './DnD.css'
@@ -17,20 +17,19 @@ const styles = {
 }
 
 const Container = ({ snapToGrid }) => {
-  const [boxes, setBoxes] = useContext(DeskContext)
+  const [desks, setDesks] = useContext(DeskContext)
   const [menu, setMenu] = useContext(MenuContext)
-
 
   
 function renderBox(item, key) {
-  return <DraggableBox key={key} id={key} {...item}/>
+  return <DraggableDesk key={key} id={key} {...item}/>
 }
 
-  const moveBox = useCallback(
+  const moveDesk = useCallback(
     (id, left, top, title, deskType, students) => {
       // console.log('students:', students)
-      setBoxes(
-        update(boxes, {
+      setDesks(
+        update(desks, {
           [id]: {
             $merge: { left, top },
           }
@@ -46,7 +45,7 @@ function renderBox(item, key) {
         students: students,
       })
     },
-    [boxes],
+    [desks],
   )
  
   const [, drop] = useDrop({
@@ -61,7 +60,7 @@ function renderBox(item, key) {
       if (snapToGrid) {
         ;[left, top] = doSnapToGrid(left, top)
       }
-      moveBox(item.id, left, top, item.title, item.deskType, item.students)
+      moveDesk(item.id, left, top, item.title, item.deskType, item.students)
       return undefined
     },
     collect(monitor, props) {
@@ -73,7 +72,7 @@ function renderBox(item, key) {
 
   return (
     <div className="Container" ref={drop} style={styles}>
-      {Object.keys(boxes).map(key => renderBox(boxes[key], key))}
+      {Object.keys(desks).map(key => renderBox(desks[key], key))}
     </div>
   )
 

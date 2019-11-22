@@ -13,7 +13,7 @@ class Callback extends Component {
         this.props.history.replace('/home')
     }
 
-    render(){
+    render() {
         return (
             <p>Loading Profile...</p>
         )

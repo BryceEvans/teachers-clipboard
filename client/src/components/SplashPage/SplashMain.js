@@ -1,51 +1,49 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import SplashWhy from './SplashWhy';
 import SplashFeatures from './SplashFeatures';
-import SideNav from '../NavigationBar/SideNavigation.js'
 // import Pricing from './Pricing';
 
-const SplashMain = ({ auth }) => {
-  function login() {
-    auth.signIn();
-  }
+const SplashMain = ({auth}) => {
+    function login() {
+        auth.signIn();
+    }
 
-
-  return (
-    <WrapperContainer>
-      <Header>
-        <JumboTron>
-          <div>
-            <h1>Focus on your what matters to you.</h1>
-            <h1>Blah blah blah blah blah blah</h1>
-            {/* <h1>Let us take care of remembering the details.</h1> */}
-            {/* <p>We believe in providing a comfortable and intuitive storage bank of personal contacts. Whether you're adding new associates or reviewing previous, we have what you need.</p> */}
-          </div>
-          <CTAButtonsGroup>
-            <CTABtn onClick={login}>Sign up</CTABtn>
-            <a href="#why">
-              <CTABtn learn href="#why">Learn more</CTABtn>
-            </a>
-          </CTAButtonsGroup>
-        </JumboTron>
-        <ArrowContainer>
-          <div>
-            <a href="#why">
-              <Arrow />
-            </a>
-          </div>
-        </ArrowContainer>
-      </Header>
-      <Body>
-        <SplashWhy />
-        <SplashFeatures />
-        {/* <Pricing /> */}
-        <BackToTopContainer>
-          <a href="/#"><h1>Top</h1></a>
-        </BackToTopContainer>
-      </Body>
-    </WrapperContainer>
-  );
+    return (
+        <WrapperContainer>
+            <Header>
+                <JumboTron>
+                    <div>
+                        <h1>Focus on your what matters to you.</h1>
+                        <h1>Blah blah blah blah blah blah</h1>
+                        {/* <h1>Let us take care of remembering the details.</h1> */}
+                        {/* <p>We believe in providing a comfortable and intuitive storage bank of personal contacts. Whether you're adding new associates or reviewing previous, we have what you need.</p> */}
+                    </div>
+                    <CTAButtonsGroup>
+                        <CTABtn onClick={login}>Sign up</CTABtn>
+                        <a href="#why">
+                            <CTABtn learn href="#why">Learn more</CTABtn>
+                        </a>
+                    </CTAButtonsGroup>
+                </JumboTron>
+                <ArrowContainer>
+                    <div>
+                        <a href="#why">
+                            <Arrow/>
+                        </a>
+                    </div>
+                </ArrowContainer>
+            </Header>
+            <Body>
+                <SplashWhy/>
+                <SplashFeatures/>
+                {/* <Pricing /> */}
+                <BackToTopContainer>
+                    <a href="/#"><h1>Top</h1></a>
+                </BackToTopContainer>
+            </Body>
+        </WrapperContainer>
+    );
 };
 
 export default SplashMain

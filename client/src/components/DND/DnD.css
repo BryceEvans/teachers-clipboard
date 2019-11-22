@@ -1,10 +1,16 @@
 .DnD {
     padding-top: 60px;
     padding-left: 60px;
+    position: absolute;
+}
+
+.DropArea {
+    z-index: -1;
+    width: 80px;
+    height: 60px;
 }
 .Container {
 
-    /*z-index: 10;*/
     background-color: #269;
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
     background-position: -20px -2px, -2px -2px, -1px -1px, -1px -1px;

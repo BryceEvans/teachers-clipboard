@@ -2,27 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import auth from '../../Authentication/Auth0'
 
-const Nav = () => {
-  
-  if (!auth.isAuthenticated()) {
-    return (
-      <NavContainer id="VisitorNavContainer">
-      <li><a href="#why">Why Eclipment</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-    </NavContainer>
-    )}
+const TopNavSplash = () => {
 
-  if (auth.isAuthenticated()) {
-      return (
-      <NavContainer id="UserNavContainer">
+    if (!auth.isAuthenticated()) {
+        return (
+            <NavContainer id="VisitorNavContainer">
+                <li><a href="#why">Why Eclipment</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </NavContainer>
+        )
+    }
 
-      </NavContainer>
-      )
-    } 
+    if (auth.isAuthenticated()) {
+        return (
+            <NavContainer id="UserNavContainer">
+
+            </NavContainer>
+        )
+    }
 }
 
-export default Nav;
+export default TopNavSplash;
 
 const NavContainer = styled.ul`
   display: flex;

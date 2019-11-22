@@ -69,14 +69,14 @@ body #root {
 
 a {
   text-decoration: none;
-  font-size: 50px;
+  /*font-size: 50px;*/
 }
 
-a:hover {
-  color:white;
-  text-decoration: underline;
-}
+/*a:hover {*/
+/*  color:white;*/
+/*  text-decoration: underline;*/
+/*}*/
 
-a:visited {
-  color: white;
-}
+/*a:visited {*/
+/*  color: white;*/
+/*}*/

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDragLayer } from 'react-dnd'
 import ItemTypes from './ItemTypes'
-import BoxDragPreview from './BoxDragPreview'
+import DeskDragPreview from './DeskDragPreview'
 import snapToGrid from './snapToGrid'
+
 const layerStyles = {
   position: 'fixed',
   pointerEvents: 'none',
@@ -12,6 +13,7 @@ const layerStyles = {
   width: '100%',
   height: '100%',
 }
+
 function getItemStyles(initialOffset, currentOffset, isSnapToGrid) {
   if (!initialOffset || !currentOffset) {
     return {
@@ -41,6 +43,7 @@ const CustomDragLayer = props => {
       initialOffset: monitor.getInitialSourceClientOffset(),
       currentOffset: monitor.getSourceClientOffset(),
       isDragging: monitor.isDragging(),
+
     }))
   
   function renderItem() {
@@ -52,7 +55,7 @@ const CustomDragLayer = props => {
     
     switch (itemType) {
       case ItemTypes.BOX:
-        return <BoxDragPreview title={item.title} deskType={item.deskType} students={item.students} />
+        return <DeskDragPreview title={item.title} deskType={item.deskType} students={item.students} />
       default:
         return null
     }

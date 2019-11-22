@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from 'react'
+import React, {useContext} from 'react'
 
-import { useDrag, useDrop } from 'react-dnd'
+import {useDrag} from 'react-dnd'
 import ItemTypes from './ItemTypes'
-import { getEmptyImage } from 'react-dnd-html5-backend'
+import {DraggableStudentContext} from "../../Store";
 
 
 // const checkOne = () => {
@@ -21,15 +21,12 @@ import { getEmptyImage } from 'react-dnd-html5-backend'
 // export default Student
 
 
-
 function getStyles(left, top, isDragging) {
     const transform = `translate3d(${left}px, ${top}px, 0)`
     return {
         //   position: 'absolute',
         transform,
         WebkitTransform: transform,
-        // IE fallback: hide the real node using CSS when dragging
-        // because IE will ignore our custom "empty image" drag preview.
         opacity: isDragging ? 0 : 1,
         height: isDragging ? 0 : '',
         backgroundColor: "yellow",
@@ -37,24 +34,22 @@ function getStyles(left, top, isDragging) {
 }
 
 const Student = props => {
+    const [canDragStudent, setCanDragStudent] = useContext(DraggableStudentContext)
+    const {studentID, firstName, lastName, hallPassPrivledges, tags} = props.student
 
-    // console.log('STUDENT: ', props.student)
-    const { studentID, firstName, lastName, hallPassPrivledges, tags } = props.student
-    const [{ isDragging }, drag] = useDrag({
-        item: { type: ItemTypes.STUDENT, studentID, firstName, lastName, hallPassPrivledges, tags },
+    const [{isDragging}, drag] = useDrag({
+        item: {type: ItemTypes.STUDENT, studentID, firstName, lastName, hallPassPrivledges, tags},
+        canDrag: !canDragStudent,
         begin(monitor) {
             console.log('BEGIN Student monitor:', monitor)
-    
-            },
-            end(monitor) {
-                //ends with the object being carried
-                console.log('END Student monitor:', monitor)
-                // console.log("Student monitor.didDrop()", monitor.didDrop())
-                // console.log("Student monitor.getItem()", monitor.getItem())
-                // console.log("Student getDropResult()", monitor.getDropResult())
-            },
-        
-        
+
+        },
+        end(monitor) {
+            //ends with the object being carried
+            console.log('END Student monitor:', monitor)
+        },
+
+
         collect: monitor => ({
             isDragging: monitor.isDragging(),
         }),

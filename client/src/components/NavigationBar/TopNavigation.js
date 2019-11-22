@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components'
-import Nav from "./Nav"
+import TopNavSplash from "./TopNavSplash"
 import auth from '../../Authentication/Auth0'
 import {NavContext} from '../../Store'
 import ListItem from "@material-ui/core/ListItem";
@@ -9,11 +9,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import List from "@material-ui/core/List";
 
-const S_ListItemIcon = styled(ListItemIcon)`
+const s_ListItemIcon = styled(ListItemIcon)`
 	// height: 59px;
     // z-index: 9999;
 `;
-const S_List = styled(List)`
+const s_List = styled(List)`
 	// height: 59px;
 
 `;
@@ -46,7 +46,7 @@ const TopNavigation = (props) => {
                     </AppName>
 
                     <VisitorsNav id="VisitorsNav">
-                        <Nav id="Nav"/>
+                        <TopNavSplash id="Nav"/>
                     </VisitorsNav>
 
                     <LinkStyled id="LinkStyled" type="button" onClick={login}>
@@ -60,13 +60,13 @@ const TopNavigation = (props) => {
                 <UserContainer id="UserContainer" isLoggedIn>
 
                     <NameButton id="AppName_SideButton">
-                        <S_List>
+                        <s_List>
                             <ListItem>
-                                <S_ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
+                                <s_ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
                                     {open ? <CloseIcon/> : <MenuIcon/>}
-                                </S_ListItemIcon>
+                                </s_ListItemIcon>
                             </ListItem>
-                        </S_List>
+                        </s_List>
                         <AppName id="AppName"><h1>Eclipment</h1></AppName>
                     </NameButton>
 

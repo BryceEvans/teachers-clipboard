@@ -48,8 +48,6 @@ const Student = props => {
             //ends with the object being carried
             console.log('END Student monitor:', monitor)
         },
-
-
         collect: monitor => ({
             isDragging: monitor.isDragging(),
         }),

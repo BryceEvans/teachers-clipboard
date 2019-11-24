@@ -9,14 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import List from "@material-ui/core/List";
 
-const s_ListItemIcon = styled(ListItemIcon)`
-	// height: 59px;
-    // z-index: 9999;
-`;
-const s_List = styled(List)`
-	// height: 59px;
 
-`;
 
 const TopNavigation = (props) => {
     console.log("HERE ARE THE PROPS", props);
@@ -60,13 +53,13 @@ const TopNavigation = (props) => {
                 <UserContainer id="UserContainer" isLoggedIn>
 
                     <NameButton id="AppName_SideButton">
-                        <s_List>
+                        <List>
                             <ListItem>
-                                <s_ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
+                                <ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
                                     {open ? <CloseIcon/> : <MenuIcon/>}
-                                </s_ListItemIcon>
+                                </ListItemIcon>
                             </ListItem>
-                        </s_List>
+                        </List>
                         <AppName id="AppName"><h1>Eclipment</h1></AppName>
                     </NameButton>
 

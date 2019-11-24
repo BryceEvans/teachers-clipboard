@@ -40,9 +40,9 @@ const Student = props => {
     const [{isDragging}, drag] = useDrag({
         item: {type: ItemTypes.STUDENT, studentID, firstName, lastName, hallPassPrivledges, tags},
         canDrag: !canDragStudent,
+
         begin(monitor) {
             console.log('BEGIN Student monitor:', monitor)
-
         },
         end(monitor) {
             //ends with the object being carried
@@ -57,7 +57,7 @@ const Student = props => {
 
     return (
         <div ref={drag} style={getStyles(isDragging)}>
-            >{firstName} {lastName}
+            {firstName} {lastName}
         </div>
     )
 }

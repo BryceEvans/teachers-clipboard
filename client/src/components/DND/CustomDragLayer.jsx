@@ -49,9 +49,6 @@ const CustomDragLayer = props => {
   function renderItem() {
     // console.log("What is this item..", item)
     // console.log("What is this students..", typeof(item.students))
-    // let x = ["a", "b"]
-    // x.push("c")
-    // console.log('x:', x)
     
     switch (itemType) {
       case ItemTypes.BOX:

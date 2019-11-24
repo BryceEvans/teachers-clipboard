@@ -7,6 +7,7 @@ export const IconContext = React.createContext()
 export const NavContext = React.createContext()
 export const DraggableDeskContext = React.createContext()
 export const DraggableStudentContext = React.createContext()
+export const StudentCardsContext = React.createContext()
 
 
 const Store = ({children}) => {
@@ -20,7 +21,7 @@ const Store = ({children}) => {
     const [open, setOpen] = useState(false);
     const [canDragDesk, setCanDragDesk] = useState(false)
     const [canDragStudent, setCanDragStudent] = useState(false)
-
+    const [cards, setCards] = useState(null)
 
     const [menu, setMenu] = useState({
         visible: false, title: "", id: '', top: '', left: '', students: []
@@ -35,12 +36,7 @@ const Store = ({children}) => {
                     studentID: 1, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true,
                     tags: [{tagName: 'ESL', color: 'purple'}, {tagName: 'Vision', color: 'blue'}],
                     counts: {exchange: null, eye: null, phone: null}
-                },
-                {
-                    studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false,
-                    tags: [{tagName: 'SPED', color: 'red'}],
-                    counts: {exchange: null, eye: null, phone: null}
-                },
+                }
             ]
         },
         {
@@ -54,8 +50,15 @@ const Store = ({children}) => {
             ]
         },
 
+        {
+            top: 220, left: 120, title: 'Desk3', deskType: "desk-vertical",
+            students: [{
+                studentID: 2, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: false,
+                tags: [{tagName: 'SPED', color: 'red'}],
+                counts: {exchange: null, eye: null, phone: null}
+            },]
+        },
         {top: 320, left: 220, title: 'Desk4', deskType: "desk-long-vertical", students: []},
-        {top: 220, left: 120, title: 'Desk3', deskType: "desk-vertical", students: []},
         {top: 420, left: 320, title: 'Desk5', deskType: "desk-square", students: []},
         {top: 60, left: 400, title: 'Desk6', deskType: "desk-square-45", students: []},
         {top: 200, left: 340, title: 'Desk7', deskType: "desk-circle", students: []},
@@ -150,21 +153,23 @@ const Store = ({children}) => {
     ])
 
     return (
-        <IconContext.Provider value={[iconCount, setIconCount]}>
-            <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
-                <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
-                    <StudentContext.Provider value={[student, setStudent]}>
-                        <DeskContext.Provider value={[desks, setDesks]}>
-                            <MenuContext.Provider value={[menu, setMenu]}>
-                                <NavContext.Provider value={[open, setOpen]}>
-                                    {children}
-                                </NavContext.Provider>
-                            </MenuContext.Provider>
-                        </DeskContext.Provider>
-                    </StudentContext.Provider>
-                </DraggableStudentContext.Provider>
-            </DraggableDeskContext.Provider>
-        </IconContext.Provider>
+        //<StudentCardsContext> value={[cards, setCards]}>
+            <IconContext.Provider value={[iconCount, setIconCount]}>
+                <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
+                    <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
+                        <StudentContext.Provider value={[student, setStudent]}>
+                            <DeskContext.Provider value={[desks, setDesks]}>
+                                <MenuContext.Provider value={[menu, setMenu]}>
+                                    <NavContext.Provider value={[open, setOpen]}>
+                                        {children}
+                                    </NavContext.Provider>
+                                </MenuContext.Provider>
+                            </DeskContext.Provider>
+                        </StudentContext.Provider>
+                    </DraggableStudentContext.Provider>
+                </DraggableDeskContext.Provider>
+            </IconContext.Provider>
+        // </StudentCardsContext>
     )
 }
 

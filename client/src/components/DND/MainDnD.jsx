@@ -1,7 +1,9 @@
 import React, {useCallback, useContext, useState} from 'react'
 import Container from './Container'
+import StudentList from './StudentList'
 import CustomDragLayer from './CustomDragLayer'
 import {DeskContext, DraggableDeskContext, DraggableStudentContext, MenuContext} from '../../Store'
+import StudentList2 from "./StudentList2";
 
 const DragAroundCustomDragLayer = () => {
     const [snapToGridAfterDrop, setSnapToGridAfterDrop] = useState(true)
@@ -43,7 +45,7 @@ const DragAroundCustomDragLayer = () => {
 
 
     const rotateDesk = props => {
-        console.log('MainDnD Rotate Desk props: ', props)
+        // console.log('MainDnD Rotate Desk props: ', props)
         const {id, top, left, title, deskType, students} = props
         let newDeskType = switchDesk(deskType) // Gets the next desk in the switch progrssion
         let newArr = [...boxes]; // copying the old datas array
@@ -63,19 +65,8 @@ const DragAroundCustomDragLayer = () => {
             ...boxes, 1:
                 {top: 100, left: 100, title: 'Hard Code', deskType: 'desk-horizontal', students: []}
         });
-
-
         // setBoxes([...boxes, {1: { top: 100, left: 100, title: 'Hard Code', deskType: 'desk-horizontal', students: [] } ]);
     };
-
-//   setExampleState({...exampleState,  masterField2: {
-//     fieldOne: "c",
-//     fieldTwo: {
-//        fieldTwoOne: "d",
-//        fieldTwoTwo: "e"
-//        }
-//     },
-// }})
 
     const onToggleForbidDeskDrag = useCallback(() => {
         setCanDragDesk(!canDragDesk)
@@ -84,6 +75,33 @@ const DragAroundCustomDragLayer = () => {
     const onToggleForbidStudentDrag = useCallback(() => {
         setCanDragStudent(!canDragStudent)
     }, [canDragStudent])
+
+    const tasksList1 = [
+        { _id: 1, title: "First Task", status: "backlog" },
+        { _id: 2, title: "Second Task", status: "backlog" },
+        { _id: 3, title: "Third Task", status: "backlog" },
+        { _id: 4, title: "Fourth Task", status: "new" },
+        { _id: 5, title: "Fifth Task", status: "new" },
+
+    ];    const tasksList2 = [
+        { _id: 6, title: "Sixth Task", status: "wip" },
+        { _id: 7, title: "Seventh Task", status: "review" },
+        { _id: 8, title: "Eighth Task", status: "review" },
+        { _id: 9, title: "Ninth Task", status: "done" },
+        { _id: 10, title: "Tenth Task", status: "done" }
+    ];
+
+    const listOne = [
+        { id: 1, text: "Item 1" },
+        { id: 2, text: "Item 2" },
+        { id: 3, text: "Item 3" }
+    ];
+
+    const listTwo = [
+        { id: 4, text: "Item 4" },
+        { id: 5, text: "Item 5" },
+        { id: 6, text: "Item 6" }
+    ];
 
     return (
         <div className="DnD">
@@ -97,6 +115,13 @@ const DragAroundCustomDragLayer = () => {
             </div>
             <button onClick={() => update()}>Update</button>
             <Container snapToGrid={snapToGridAfterDrop}/>
+
+            <StudentList2 id={5} list={listOne}/>
+            <StudentList2 id={4} list={listTwo}/>
+            <StudentList id={1} tl={tasksList1}  />
+            <StudentList id={2} tl={tasksList2}/>
+
+
             <CustomDragLayer snapToGrid={snapToGridWhileDragging}/>
             <p>
                 <label htmlFor="snapToGridWhileDragging">

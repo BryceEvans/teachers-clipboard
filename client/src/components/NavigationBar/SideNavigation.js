@@ -24,14 +24,14 @@ import FolderIcon from '@material-ui/icons/Folder';
 import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 import ListSubheader from "@material-ui/core/ListSubheader";
 
-const S_ListItemIcon = styled(ListItemIcon)`
-	// height: 59px;
-    // z-index: 9999;
-`;
-const S_List = styled(List)`
-	height: 59px;
-
-`;
+// const S_ListItemIcon = styled(ListItemIcon)`
+// 	// height: 59px;
+//     // z-index: 9999;
+// `;
+// const S_List = styled(List)`
+// 	height: 59px;
+//
+// `;
 
 function ItemOne(theme) {
     return (
@@ -71,13 +71,13 @@ const MiniDrawer = () => {
                 }}
                 open={open}
             >
-                <S_List >
+                <List >
                     <ListItem>
-                        <S_ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
+                        <ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
                             {open ? <CloseIcon/> : <MenuIcon/>}
-                        </S_ListItemIcon>
+                        </ListItemIcon>
                     </ListItem>
-                </S_List>
+                </List>
 
                 <Divider/>
 

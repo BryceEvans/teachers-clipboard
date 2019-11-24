@@ -1,53 +1,40 @@
 import React, { useState, useCallback, useContext } from 'react'
 import { useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
-import {DeskContext} from '../../Store'
 import './DnD.css'
 import Student from "./Student";
 
 //This is the area that accepts dropping
 //It also displays the student arrays.
 //If you see a student name, it's both movable and droppable
-const DroppableArea = ({title, students}) => {
-    // console.log('students type:', students)
-
-    const [items, setItems] = useState([]);
-    const [boxes, setBoxes] = useContext(DeskContext)
-
-
-    // const appendItem = useCallback(
-    //     item => {
-    //         console.log('DROPPABLE item being carried:', item)
-    //         console.log("DROPPABLE In appenditem call")
-    //         setItems(items => [...items, item]);
-    //     },
-    //     [setItems]
-    // );
+const DroppableDesk = ({title, students}) => {
+    console.log('DroppableDesk students:', students)
 
     const [collectedProps, drop] = useDrop({
-        accept: ItemTypes.STUDENT,
-        // drop: appendItem, 
-        drop(item, monitor) {
-            console.log('DROPPABLE item:', item)
-            students.push(item)
-            return console.log(`DROPPABLE returned desk: ${title} Students On Desk: ${students.length}`)
 
+        accept: ItemTypes.STUDENT,
+        drop(item, monitor) {
+            if (students.length < 1) {
+                students.push(item)
+            }
+
+            // console.log('DROPPABLE item:', item)
+            // console.log('DROPPABLE getitem:', monitor.getItem())
+            return console.log(`DROPPABLE returned desk: ${title} Students On Desk: ${students.length}`)
         },
         collect: monitor => {
-            //   console.log('monitor:', monitor)
-            //   console.log('monitor:', monitor.isOver())
-            //   console.log('didDrop():', monitor.didDrop())
-            //   console.log('getDropResult():', monitor.getDropResult())
+              // console.log('monitor1:', monitor)
+              // console.log('monitor2:', monitor.isOver())
+              // console.log('didDrop():', monitor.didDrop())
+              // console.log('getDropResult():', monitor.getDropResult())
+              // console.log('subscribeToStateChange():', monitor.subscribeToStateChange())
+              // console.log('getHandlerId():', monitor.getHandlerId())
+              // console.log('receiveHandlerId():', monitor.receiveHandlerId())
             return {
                 hovered: monitor.isOver()
             };
         }
     });
-
-
-    // const listItems = items.map((item, idx) => (
-    //     <div key={idx} className="dropped-item" />));
-
 
     return (
         <div>
@@ -58,7 +45,7 @@ const DroppableArea = ({title, students}) => {
                     {students && students.map(student => {
                         return (
                             <div key={student.studentID} >
-                                {console.log("Box.js Students", students)}
+                                {/*{console.log("Box.js Students", students)}*/}
                                 <Student student={student}/>
                             </div>
                         )
@@ -70,4 +57,4 @@ const DroppableArea = ({title, students}) => {
     );
 };
 
-export default DroppableArea
+export default DroppableDesk

@@ -1,20 +1,16 @@
-import React, {useCallback, useState} from 'react'
-import Student from './Student'
-import DroppableArea from './DroppableArea'
+import React from 'react'
+import DroppableDesk from './DroppableDesk'
 import './DnD.css'
-import {useDrag} from "react-dnd";
 
-
-
-const Desk = ({ title, deskType, students, color }) => {
+const Desk = ({title, deskType, students, color}) => {
     const backgroundColor = color ? 'lightgrey' : 'white'
     let x = switchStyle(deskType, backgroundColor)
 
-
     return (
-        <div style={x} >
+        <div style={x}>
             BLAH
-            <DroppableArea title={title} students={students}/>
+            <DroppableDesk title={title} students={students}/>
+            {console.log("Title DESK: ", title)}
         </div>
     )
 }
@@ -23,25 +19,25 @@ const Desk = ({ title, deskType, students, color }) => {
 const switchStyle = (deskType, backgroundColor) => {
     switch (deskType) {
         case 'desk-horizontal':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-long-horizontal':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-vertical':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-long-vertical':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-square':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-square-45':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-circle':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-medium-circle':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         case 'desk-large-circle':
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
         default:
-            return Object.assign({}, shape, { backgroundColor });
+            return Object.assign({}, shape, {backgroundColor});
     }
 }
 

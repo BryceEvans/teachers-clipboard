@@ -1,6 +1,5 @@
 import React, {useCallback, useContext, useState} from 'react'
 import Container from './Container'
-import StudentList from './StudentList'
 import CustomDragLayer from './CustomDragLayer'
 import {DeskContext, DraggableDeskContext, DraggableStudentContext, MenuContext} from '../../Store'
 import StudentList2 from "./StudentList2";
@@ -76,21 +75,6 @@ const DragAroundCustomDragLayer = () => {
         setCanDragStudent(!canDragStudent)
     }, [canDragStudent])
 
-    const tasksList1 = [
-        { _id: 1, title: "First Task", status: "backlog" },
-        { _id: 2, title: "Second Task", status: "backlog" },
-        { _id: 3, title: "Third Task", status: "backlog" },
-        { _id: 4, title: "Fourth Task", status: "new" },
-        { _id: 5, title: "Fifth Task", status: "new" },
-
-    ];    const tasksList2 = [
-        { _id: 6, title: "Sixth Task", status: "wip" },
-        { _id: 7, title: "Seventh Task", status: "review" },
-        { _id: 8, title: "Eighth Task", status: "review" },
-        { _id: 9, title: "Ninth Task", status: "done" },
-        { _id: 10, title: "Tenth Task", status: "done" }
-    ];
-
     const listOne = [
         { studentID: 1, firstName: "Item 1" },
         { studentID: 2, firstName: "Item 2" },
@@ -117,10 +101,6 @@ const DragAroundCustomDragLayer = () => {
 
             <StudentList2 arrayId={"MasterList"} list={listOne}/>
             <StudentList2 arrayId={4} list={listTwo}/>
-
-
-            <StudentList id={1} tl={tasksList1}  />
-            <StudentList id={2} tl={tasksList2}/>
 
 
             <CustomDragLayer snapToGrid={snapToGridWhileDragging}/>

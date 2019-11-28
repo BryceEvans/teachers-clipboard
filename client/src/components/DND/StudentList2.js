@@ -18,16 +18,6 @@ const MyDropTarget = (props, index) => {
                 const sourceObj = monitor.getItem();
                 // console.log("SourceOBJ listid?", sourceObj);
                 // console.log("Props arrayid?", props);
-
-                // const dragIndex = sourceObj.index;
-
-                // const hoverIndex = index;
-
-                // item.index = hoverIndex;
-                // if (dragIndex === hoverIndex) {
-                //     return;
-                // }
-
                 // console.log("Source arrayID", sourceObj.arrayId);
                 // console.log("arrayID", arrayId);
                 if (arrayId !== sourceObj.arrayId) PushCard(sourceObj.student);
@@ -43,11 +33,6 @@ const MyDropTarget = (props, index) => {
             }
         }
     )
-
-    // const PushCard = (student) => {
-    //     console.log("PUSHED CARD?", student)
-    //     setStudents(student)
-    // }
 
     const PushCard = useCallback(
         (student) => {
@@ -101,8 +86,6 @@ const MyDropTarget = (props, index) => {
         )
     }
 
-    // const myStudents = students.list;
-    // console.log("MyStude", students);
     const {canDrop, isOver} = props;
     const isActive = canDrop && isOver;
     const style = {
@@ -111,37 +94,16 @@ const MyDropTarget = (props, index) => {
         border: '1px dashed gray'
     }
 
-    const backgroundColor = isActive ? 'lightgreen' : '#FFF';
+    const backgroundColor = isActive ? 'lightgreen' : 'lightgreen';
 
     drop(ref)
 
     return (
         <>
-            <div ref={ref} style={{
-                ...style,
-                backgroundColor
+            <div ref={ref} style={{...style, backgroundColor
             }}>{students && students.map((student, i) => renderCard(student, i))}</div>
         </>
     )
-    // return (
-    //     <div ref={ref} style={{...style, backgroundColor}}>
-    //         {console.log("Students", students)}
-    //         {students && students.map((student, index) => {
-    //             return (
-    //                 <Card
-    //                     index={index}
-    //                     key={student.studentID}
-    //                     id={student.studentID}
-    //                     text={student.firstName}
-    //                     moveCard={moveCard}
-    //
-    //                     student={student}
-    //                     // removeCard={() => removeCard()}
-    //                 />
-    //             );
-    //         })}
-    //     </div>
-    // );
 }
 
 

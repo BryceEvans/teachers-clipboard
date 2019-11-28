@@ -92,7 +92,7 @@ const Card = ({student, removeCard, index, text, id, moveCard, listId}) => {
                 // console.log("dropResult.listId", dropResult.listId);
                 // console.log("item.index", item.index);
 
-                // removeCard(item.index);
+                removeCard(item.index);
 
             }
         },

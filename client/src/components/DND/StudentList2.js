@@ -49,14 +49,16 @@ const MyDropTarget = (props, index) => {
         setStudents(student)
     }
 
-    const RemoveCard = (index) => {
-        // console.log("RemoveCard Index", index);
-        // console.log("Students", students);
-        students.splice(index, 1)
-        // console.log("Students spliced", students);
-        setStudents(students)
 
-    }
+    const RemoveCard = useCallback(
+        (index) => {
+            setStudents(
+                update(students, {
+                $splice: [
+                    [index, 1]
+                ]
+        }));
+    })
 
     const MoveCard = useCallback(
         (dragIndex, hoverIndex) => {
@@ -72,17 +74,6 @@ const MyDropTarget = (props, index) => {
         },
         [students],
     )
-    // const MoveCard = (dragIndex, hoverIndex) => {
-    //     console.log("MoveCard CALLED");
-    //     console.log("HoverIndex: ", hoverIndex);
-    //     console.log("DragIndex: ", dragIndex);
-    //     const dragCard = students[dragIndex]
-    //     console.log("Students", students);
-    //     students.splice(dragIndex, 1)
-    //     students.splice(hoverIndex, 0, dragCard)
-    //     console.log("Students spliced", students);
-    //     setStudents(students)
-    // }
 
 
     const renderCard = (student, index) => {

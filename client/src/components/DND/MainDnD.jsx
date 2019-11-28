@@ -59,8 +59,8 @@ const DragAroundCustomDragLayer = () => {
     });
 
     const update = () => {
-        console.log(...boxes)
-        console.log('boxes:', boxes[0])
+        // console.log(...boxes)
+        // console.log('boxes:', boxes[0])
         setBoxes({
             ...boxes, 1:
                 {top: 100, left: 100, title: 'Hard Code', deskType: 'desk-horizontal', students: []}
@@ -92,15 +92,14 @@ const DragAroundCustomDragLayer = () => {
     ];
 
     const listOne = [
-        { id: 1, text: "Item 1" },
-        { id: 2, text: "Item 2" },
-        { id: 3, text: "Item 3" }
+        { studentID: 1, firstName: "Item 1" },
+        { studentID: 2, firstName: "Item 2" },
+        { studentID: 3, firstName: "Item 3" }
     ];
-
     const listTwo = [
-        { id: 4, text: "Item 4" },
-        { id: 5, text: "Item 5" },
-        { id: 6, text: "Item 6" }
+        { studentID: 4, firstName: "Item 4" },
+        { studentID: 5, firstName: "Item 5" },
+        { studentID: 6, firstName: "Item 6" }
     ];
 
     return (
@@ -116,8 +115,10 @@ const DragAroundCustomDragLayer = () => {
             <button onClick={() => update()}>Update</button>
             <Container snapToGrid={snapToGridAfterDrop}/>
 
-            <StudentList2 id={5} list={listOne}/>
-            <StudentList2 id={4} list={listTwo}/>
+            <StudentList2 arrayId={"MasterList"} list={listOne}/>
+            {/*<StudentList2 arrayId={4} list={listTwo}/>*/}
+
+
             <StudentList id={1} tl={tasksList1}  />
             <StudentList id={2} tl={tasksList2}/>
 

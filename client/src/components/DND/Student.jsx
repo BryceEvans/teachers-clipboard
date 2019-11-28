@@ -4,29 +4,14 @@ import {useDrag} from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import {DraggableStudentContext} from "../../Store";
 
-
-// const checkOne = () => {
-//     console.log("clicked ;)")
-// }
-//     const Student = ({ id, type }) => {
-//         const [, drag] = useDrag({
-//           item: { id, type }
-//         });
-//         return (
-//           <div style={{ backgroundColor: "pink"}} onClick={() => checkOne()} className="draggable" ref={drag}>
-//             draggable
-//           </div>
-//         );
-//       };
-// export default Student
-
-
 function getStyles(left, top, isDragging) {
     const transform = `translate3d(${left}px, ${top}px, 0)`
     return {
         //   position: 'absolute',
         transform,
         WebkitTransform: transform,
+        // IE fallback: hide the real node using CSS when dragging
+        // because IE will ignore our custom "empty image" drag preview.
         opacity: isDragging ? 0 : 1,
         height: isDragging ? 0 : '',
         backgroundColor: "yellow",
@@ -34,18 +19,26 @@ function getStyles(left, top, isDragging) {
 }
 
 const Student = props => {
+    // console.log("PROPS",props);
     const [canDragStudent, setCanDragStudent] = useContext(DraggableStudentContext)
     const {studentID, firstName, lastName, hallPassPrivledges, tags} = props.student
+    const index = props.index
+    const arrayId = props.arrayId
+
+    // console.log("Index from student props", index);
 
     const [{isDragging}, drag] = useDrag({
-        item: {type: ItemTypes.STUDENT, studentID, firstName, lastName, hallPassPrivledges, tags},
+        item: {type: ItemTypes.STUDENT, firstName, lastName, arrayId},
         canDrag: !canDragStudent,
 
         begin(monitor) {
-            console.log('BEGIN Student monitor:', monitor)
+            return {
+                index: index,
+                arrayId: arrayId,
+                student: props.student
+            }
         },
         end(monitor) {
-            //ends with the object being carried
             console.log('END Student monitor:', monitor)
         },
         collect: monitor => ({

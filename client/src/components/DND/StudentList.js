@@ -92,7 +92,7 @@ export default StudentList;
 const KanbanColumn = ({status, changeTaskStatus, children}) => {
     const ref = useRef(null);
     const [, drop] = useDrop({
-        accept: "card",
+        accept: "student",
         drop(item) {
             changeTaskStatus(item.id, status);
         }

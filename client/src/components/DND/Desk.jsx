@@ -10,7 +10,7 @@ const Desk = ({title, deskType, students, color}) => {
         <div style={x}>
             BLAH
             <DroppableDesk title={title} students={students}/>
-            {console.log("Title DESK: ", title)}
+            {/*{console.log("Title DESK: ", title)}*/}
         </div>
     )
 }

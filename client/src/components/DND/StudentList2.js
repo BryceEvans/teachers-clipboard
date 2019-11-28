@@ -30,7 +30,7 @@ const MyDropTarget = (props, index) => {
 
                 // console.log("Source arrayID", sourceObj.arrayId);
                 // console.log("arrayID", arrayId);
-                // if (arrayId !== sourceObj.arrayId) pushCard(sourceObj.student);
+                if (arrayId !== sourceObj.arrayId) PushCard(sourceObj.student);
                 return {
                     listId: arrayId
                 };
@@ -44,11 +44,20 @@ const MyDropTarget = (props, index) => {
         }
     )
 
-    const pushCard = (student) => {
-        console.log("PUSHED CARD?", student)
-        setStudents(student)
-    }
+    // const PushCard = (student) => {
+    //     console.log("PUSHED CARD?", student)
+    //     setStudents(student)
+    // }
 
+    const PushCard = useCallback(
+        (student) => {
+        setStudents(
+            update(students, {
+                // students: {
+                $push: [ student ]
+            // }
+        }));
+    })
 
     const RemoveCard = useCallback(
         (index) => {

@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useContext } from 'react'
 import { useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
-import DraggableDesk from './DraggableDesk'
+import Desk from './DraggableDesk'
 import doSnapToGrid from './snapToGrid'
 import update from 'immutability-helper'
 import './DnD.css'
@@ -22,7 +22,7 @@ const Container = ({ snapToGrid }) => {
 
   
 function renderBox(item, key, index) {
-  return <DraggableDesk key={key} id={key} {...item} index={index}/>
+  return <Desk key={key} id={key} {...item} index={index}/>
 }
 
   const moveDesk = useCallback(

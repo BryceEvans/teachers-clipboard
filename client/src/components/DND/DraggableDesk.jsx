@@ -1,26 +1,15 @@
-import React, {useState, useCallback, useEffect, useContext} from 'react'
+import React, { useEffect, useContext} from 'react'
 import {useDrag, useDrop} from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import {getEmptyImage} from 'react-dnd-html5-backend'
-import Desk from './Desk'
 import {MenuContext, DraggableDeskContext} from '../../Store'
+import DroppableDesk from "./DroppableDesk";
+import './DnD.css'
+import styles from './DragDropStyles.css'
 
-function getStyles(left, top, isDragging) {
-    const transform = `translate3d(${left}px, ${top}px, 0)`
-    return {
-        position: 'absolute',
-        transform,
-        WebkitTransform: transform,
-        // IE fallback: hide the real node using CSS when dragging
-        // because IE will ignore our custom "empty image" drag preview.
-        opacity: isDragging ? 0 : 1,
-        // height: isDragging ? 0 : '',
-    }
-}
-
-const DraggableDesk = props => {
-    const [canDragDesk, setCanDragDesk] = useContext(DraggableDeskContext)
-    const [menu, setMenu] = useContext(MenuContext)
+const Desk = props => {
+    const [canDragDesk] = useContext(DraggableDeskContext)
+    const [, setMenu] = useContext(MenuContext)
     const {id, title, left, top, deskType, students, index} = props
 
     const [{isDragging}, drag, preview] = useDrag({
@@ -47,13 +36,14 @@ const DraggableDesk = props => {
     }
 
     return (
-        <div onClick={() => boxInfo(props)} onMouseDown={() => boxInfo(props)}
-             style={getStyles(left, top, isDragging)} ref={drag}>
-            {console.log("In DRAGDESK STUDENTS", students)}
-
-            <Desk title={title} deskType={deskType} students={students} index={index}/>
+        <div onClick={() => boxInfo(props)}
+             onMouseDown={() => boxInfo(props)}
+             style={{...styles.getStyles(left, top, isDragging), ...styles.switchStyle(deskType, "white")}}
+             ref={drag}>
+            MyBlah
+            <DroppableDesk title={title} students={students} index={index}/>
         </div>
     )
 }
 
-export default DraggableDesk
+export default Desk

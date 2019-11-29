@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from 'react'
-import Desk from './Desk'
+import Desk from './DraggableDesk'
 const styles = {
   display: 'inline-block',
   // transform: 'rotate(-35deg)',

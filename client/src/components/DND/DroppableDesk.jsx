@@ -3,7 +3,6 @@ import {useDrop} from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import './DnD.css'
 import Student from "./Student";
-import uuid from "uuid";
 import update from "immutability-helper";
 import {DeskContext} from "../../Store";
 import Card from "./StudentCard";
@@ -24,11 +23,14 @@ const DroppableDesk = ({title, index, students}) => {
             // console.log("MONITOR: ", monitor.getDropResult())
             // console.log("GETITEM: ", monitor.getItem())
             // console.log("ITEM: ", item)
+            let arrLen;
             if (desks[index].students.length < 1) {
+                arrLen = desks[index].students.length
                 desks[index].students.push(item.student)
             }
             return {
-                arrayId: title
+                arrayId: title,
+                arrLen: arrLen
             };
             // console.log('DROPPABLE item:', item)
             // console.log('DROPPABLE getitem:', monitor.getItem())
@@ -90,9 +92,12 @@ const DroppableDesk = ({title, index, students}) => {
                     {students && students.map((student, index) => {
                         return (
                             <div key={student.studentID + index}>
-                                <Student index={index} arrayId={title} student={student}
-                                         removeCard={(ind) => RemoveCard(ind)}
-                                         moveCard={(dragI, hoverI) => MoveCard(dragI, hoverI)}
+                                <Student
+                                    index={index}
+                                    arrayId={title}
+                                    student={student}
+                                    removeCard={(ind) => RemoveCard(ind)}
+                                    moveCard={(dragI, hoverI) => MoveCard(dragI, hoverI)}
                                 />
                             </div>
                         )

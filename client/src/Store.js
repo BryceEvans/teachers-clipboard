@@ -68,27 +68,6 @@ const Store = ({children}) => {
     ])
 
     const [student, setStudent] = useState([
-        {
-            studentID: 1,
-            firstName: 'Jared',
-            lastName: 'Smith',
-            hallPassPrivledges: true,
-            tags: [{tagName: 'ESL', color: 'purple'}, {tagName: 'Vision', color: 'blue'}]
-        },
-        {
-            studentID: 2,
-            firstName: 'Juan',
-            lastName: 'Garcia',
-            hallPassPrivledges: false,
-            tags: [{tagName: 'SPED', color: 'red'}]
-        },
-        {
-            studentID: 3,
-            firstName: 'Jane',
-            lastName: 'Smith',
-            hallPassPrivledges: false,
-            tags: [{tagName: 'Anxiety', color: 'orange'}]
-        },
         {studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: []},
         {studentID: 5, firstName: 'Jake', lastName: 'Johnson', hallPassPrivledges: true, tags: []},
         {studentID: 6, firstName: 'Paul', lastName: 'Johnson', hallPassPrivledges: true, tags: []},

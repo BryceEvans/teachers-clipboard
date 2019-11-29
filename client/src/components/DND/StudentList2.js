@@ -36,23 +36,26 @@ const MyDropTarget = (props, index) => {
 
     const PushCard = useCallback(
         (student) => {
-        setStudents(
-            update(students, {
-                // students: {
-                $push: [ student ]
-            // }
-        }));
-    })
-
-    const RemoveCard = useCallback(
-        (index) => {
             setStudents(
                 update(students, {
+                    // students: {
+                    $push: [student]
+                    // }
+                }));
+        })
+
+    const RemoveCard = useCallback(
+    (index) => {
+        console.log("RemoveCard Called")
+        console.log("RemoveIndex", index);
+        setStudents(
+            update(students, {
                 $splice: [
                     [index, 1]
                 ]
-        }));
-    })
+            }));
+    }
+)
 
     const MoveCard = useCallback(
         (dragIndex, hoverIndex) => {
@@ -77,7 +80,6 @@ const MyDropTarget = (props, index) => {
                 key={student.studentID}
                 id={arrayId}
                 text={student.firsName}
-
                 student={student}
 
                 moveCard={(dragI, hoverI) => MoveCard(dragI, hoverI)}
@@ -100,7 +102,8 @@ const MyDropTarget = (props, index) => {
 
     return (
         <>
-            <div ref={ref} style={{...style, backgroundColor
+            <div ref={ref} style={{
+                ...style, backgroundColor
             }}>{students && students.map((student, i) => renderCard(student, i))}</div>
         </>
     )

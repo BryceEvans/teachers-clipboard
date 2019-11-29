@@ -77,20 +77,21 @@ const Card = ({student, removeCard, index, text, id, moveCard, listId}) => {
             }
         },
         end(props, monitor) {
+            console.log("STUDENT CARD MONITOR", monitor);
             const item = monitor.getItem();
             const dropResult = monitor.getDropResult();
-
+            //
             //If the listID is different on drop, remove orig.
 
             // console.log("DragEnd Item arrayID:", item);
-            // console.log("DragEnd DropResult listID", dropResult);
+            console.log("DragEnd DropResult listID", dropResult);
 
-            if (dropResult && dropResult.listId === item.arrayId) {
-                // console.log("item.arrayId", item.arrayId);
-                // console.log("dropResult.listId", dropResult.listId);
-                // console.log("item.index", item.index);
+            if (dropResult && dropResult.listId !== item.arrayId) {
+                console.log("item.arrayId", item.arrayId);
+                console.log("dropResult.listId", dropResult.listId);
+                console.log("item.index", item.index);
 
-                // removeCard(item.index);
+                removeCard(item.index);
 
             }
         },

@@ -2,15 +2,15 @@ import React from 'react'
 import DroppableDesk from './DroppableDesk'
 import './DnD.css'
 
-const Desk = ({title, deskType, students, color}) => {
+const Desk = ({title, deskType, students, color, index}) => {
+    // console.log("In DESK STUDENTS", students);
     const backgroundColor = color ? 'lightgrey' : 'white'
     let x = switchStyle(deskType, backgroundColor)
 
     return (
         <div style={x}>
             BLAH
-            <DroppableDesk title={title} students={students}/>
-            {/*{console.log("Title DESK: ", title)}*/}
+            <DroppableDesk title={title} students={students} index={index}/>
         </div>
     )
 }

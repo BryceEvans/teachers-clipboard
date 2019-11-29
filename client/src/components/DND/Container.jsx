@@ -21,8 +21,8 @@ const Container = ({ snapToGrid }) => {
   const [menu, setMenu] = useContext(MenuContext)
 
   
-function renderBox(item, key) {
-  return <DraggableDesk key={key} id={key} {...item}/>
+function renderBox(item, key, index) {
+  return <DraggableDesk key={key} id={key} {...item} index={index}/>
 }
 
   const moveDesk = useCallback(
@@ -72,7 +72,7 @@ function renderBox(item, key) {
 
   return (
     <div className="Container" ref={drop} style={styles}>
-      {Object.keys(desks).map(key => renderBox(desks[key], key))}
+      {Object.keys(desks).map((key, index) => renderBox(desks[key], key, index))}
     </div>
   )
 

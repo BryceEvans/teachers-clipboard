@@ -24,8 +24,8 @@ const Student = props => {
     const {studentID, firstName, lastName, hallPassPrivledges, tags} = props.student
     const index = props.index
     const arrayId = props.arrayId
-
-    // console.log("Index from student props", index);
+    // console.log("This is the desk name?", arrayId);
+    const {removeCard} = props
 
     const [{isDragging}, drag] = useDrag({
         item: {type: ItemTypes.STUDENT, firstName, lastName, arrayId},
@@ -38,8 +38,21 @@ const Student = props => {
                 student: props.student
             }
         },
-        end(monitor) {
-            console.log('END Student monitor:', monitor)
+        end(props, monitor) {
+            // console.log("MOnitor item not an item?", monitor);
+            const item = monitor.getItem();
+            const dropResult = monitor.getDropResult();
+            console.log("Student -> UseDrag -> getItem", item);
+            console.log("Student -> UseDrag -> dropResult", dropResult);
+            console.log("Student -> UseDrag -> index", index);
+
+            if (dropResult && dropResult.arrayId !== item.arrayId) {
+                console.log("Student -> UseDrag -> item.ArrayId", item.arrayId);
+                console.log("Student -> UseDrag -> dropResult.arrayId", dropResult.arrayId);
+                // console.log("item.index for remove card", item.index);
+
+                removeCard(item.index);
+            }
         },
         collect: monitor => ({
             isDragging: monitor.isDragging(),

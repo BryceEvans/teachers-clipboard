@@ -133,21 +133,21 @@ const Store = ({children}) => {
 
     return (
         //<StudentCardsContext> value={[cards, setCards]}>
-            <IconContext.Provider value={[iconCount, setIconCount]}>
-                <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
-                    <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
-                        <StudentContext.Provider value={[student, setStudent]}>
-                            <DeskContext.Provider value={[desks, setDesks]}>
-                                <MenuContext.Provider value={[menu, setMenu]}>
-                                    <NavContext.Provider value={[open, setOpen]}>
-                                        {children}
-                                    </NavContext.Provider>
-                                </MenuContext.Provider>
-                            </DeskContext.Provider>
-                        </StudentContext.Provider>
-                    </DraggableStudentContext.Provider>
-                </DraggableDeskContext.Provider>
-            </IconContext.Provider>
+        <IconContext.Provider value={[iconCount, setIconCount]}>
+            <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
+                <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
+                    <StudentContext.Provider value={[student, setStudent]}>
+                        <DeskContext.Provider value={[desks, setDesks]}>
+                            <MenuContext.Provider value={[menu, setMenu]}>
+                                <NavContext.Provider value={[open, setOpen]}>
+                                    {children}
+                                </NavContext.Provider>
+                            </MenuContext.Provider>
+                        </DeskContext.Provider>
+                    </StudentContext.Provider>
+                </DraggableStudentContext.Provider>
+            </DraggableDeskContext.Provider>
+        </IconContext.Provider>
         // </StudentCardsContext>
     )
 }

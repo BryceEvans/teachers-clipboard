@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useState} from 'react'
 import Container from './Container'
 import CustomDragLayer from './CustomDragLayer'
 import {DeskContext, DraggableDeskContext, DraggableStudentContext, MenuContext} from '../../Store'
-import StudentList2 from "./StudentList2";
+import StudentList2 from "./StudentList";
 
 const DragAroundCustomDragLayer = () => {
     const [snapToGridAfterDrop, setSnapToGridAfterDrop] = useState(true)

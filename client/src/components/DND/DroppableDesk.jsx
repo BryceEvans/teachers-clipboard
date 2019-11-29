@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext, useEffect} from 'react'
+import React, {useState, useCallback, useContext, useEffect, useRef} from 'react'
 import {useDrop} from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import './DnD.css'
@@ -6,6 +6,7 @@ import Student from "./Student";
 import uuid from "uuid";
 import update from "immutability-helper";
 import {DeskContext} from "../../Store";
+import Card from "./StudentCard";
 
 //This is the area that accepts dropping
 //It also displays the student arrays.
@@ -20,8 +21,10 @@ const DroppableDesk = ({title, index, students}) => {
     const [collectedProps, drop] = useDrop({
         accept: ItemTypes.STUDENT,
         drop(item, monitor) {
-            // console.log("Dropped item on desk", item);
-            if (desks[index].students.length < 2) {
+            // console.log("MONITOR: ", monitor.getDropResult())
+            // console.log("GETITEM: ", monitor.getItem())
+            // console.log("ITEM: ", item)
+            if (desks[index].students.length < 1) {
                 desks[index].students.push(item.student)
             }
             return {
@@ -48,9 +51,9 @@ const DroppableDesk = ({title, index, students}) => {
             console.log("DroppableDesk -> RemoveCard() -> desks", desks)
             console.log("DroppableDesk -> RemoveCard() -> desks[index]", desks[index])
             console.log("DroppableDesk -> RemoveCard() -> Index", index)
+            console.log("ARRAY LENGTH", desks[index].students.length)
 
-            // if (desks[index].students.length > 1) {
-            // console.log("Called length ABOVE 1")
+            // if (desks[index].students.length > 0) {
             setDesks(
                 update(desks, {
                     [index]: {
@@ -59,18 +62,24 @@ const DroppableDesk = ({title, index, students}) => {
                         }
                     }
                 }));
-            //
-            // const collection = [1, 2, {a: [12, 17, 15]}];
-            // const newCollection = update(collection, {2: {a: {$splice: [[1, 1, 13, 14]]}}});
-            // => [1, 2, {a: [12, 13, 14, 15]}]
+            // }
 
-            // }
-            // else {
-            //     console.log("Called length BELOW 1")
-            //     setDesks(desks[index].students = [])
-            // }
-        }
+        })
+    const MoveCard = useCallback(
+        (dragIndex, hoverIndex) => {
+            const dragCard = students[dragIndex]
+            setDesks(
+                update(desks, {
+                    $splice: [
+                        [dragIndex, 1],
+                        [hoverIndex, 0, dragCard],
+                    ],
+                }),
+            )
+        },
+        [students],
     )
+
 
     return (
         <div>
@@ -82,7 +91,9 @@ const DroppableDesk = ({title, index, students}) => {
                         return (
                             <div key={student.studentID + index}>
                                 <Student index={index} arrayId={title} student={student}
-                                         removeCard={(ind) => RemoveCard(ind)}/>
+                                         removeCard={(ind) => RemoveCard(ind)}
+                                         moveCard={(dragI, hoverI) => MoveCard(dragI, hoverI)}
+                                />
                             </div>
                         )
                     })}

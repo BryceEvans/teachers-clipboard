@@ -1,16 +1,16 @@
-import React, {useState, useCallback, useContext, useEffect, useRef} from 'react'
+import React, {useCallback, useContext} from 'react'
 import {useDrop} from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import './DnD.css'
 import Student from "./Student";
 import update from "immutability-helper";
 import {DeskContext} from "../../Store";
-import Card from "./StudentCard";
 
 //This is the area that accepts dropping
 //It also displays the student arrays.
 //If you see a student name, it's both movable and droppable
 const DroppableDesk = ({title, index, students}) => {
+    console.log("WHO ARE THESE STUDS", students);
     const [desks, setDesks] = useContext(DeskContext)
 
     // console.log("Passed Index", index);
@@ -55,7 +55,6 @@ const DroppableDesk = ({title, index, students}) => {
             console.log("DroppableDesk -> RemoveCard() -> Index", index)
             console.log("ARRAY LENGTH", desks[index].students.length)
 
-            // if (desks[index].students.length > 0) {
             setDesks(
                 update(desks, {
                     [index]: {
@@ -63,10 +62,10 @@ const DroppableDesk = ({title, index, students}) => {
                             $splice: [[indexToRemove, 1]]
                         }
                     }
-                }));
-            // }
-
-        })
+                })
+            );
+        },
+    )
     const MoveCard = useCallback(
         (dragIndex, hoverIndex) => {
             const dragCard = students[dragIndex]

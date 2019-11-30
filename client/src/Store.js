@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import List from "@material-ui/core/List";
 
 export const DeskContext = React.createContext()
 export const MenuContext = React.createContext()
@@ -7,7 +8,8 @@ export const IconContext = React.createContext()
 export const NavContext = React.createContext()
 export const DraggableDeskContext = React.createContext()
 export const DraggableStudentContext = React.createContext()
-export const StudentCardsContext = React.createContext()
+export const ClassroomContext = React.createContext()
+
 
 
 const Store = ({children}) => {
@@ -18,10 +20,23 @@ const Store = ({children}) => {
         {name: 'phone', count: 3},
     ])
 
+
+    const [classroom, setClassroom] = useState(
+        [
+            {title: 'First class is the best', color: "red", icon: "ClassIcon"},
+            {title: 'Second', color: "blue", icon: "ClassIcon"},
+            {title: 'Third', color: "teal", icon: "ClassIcon"},
+            {title: 'Fourth', color: "pink", icon: "ClassIcon"},
+            {title: 'Fifth', color: "violet", icon: "ClassIcon"},
+            {title: 'Sixth', color: "orange", icon: "ClassIcon"},
+            {title: 'Seventh', color: "purple", icon: "ClassIcon"},
+            {title: 'Eighth', color: "#00ff00", icon: "ClassIcon"},
+        ]
+    )
+
     const [open, setOpen] = useState(false);
     const [canDragDesk, setCanDragDesk] = useState(false)
     const [canDragStudent, setCanDragStudent] = useState(false)
-    const [cards, setCards] = useState(null)
 
     const [menu, setMenu] = useState({
         visible: false, title: "", id: '', top: '', left: '', students: []
@@ -79,13 +94,13 @@ const Store = ({children}) => {
             hallPassPrivledges: true,
             tags: [{tagName: 'SPED', color: 'red'}]
         },
-        // {studentID: 9, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: []},
-        // {studentID: 10, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: true, tags: []},
-        // {studentID: 11, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: []},
-        // {studentID: 12, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: []},
-        // {studentID: 13, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
-        // {studentID: 14, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
-        // {studentID: 15, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
+        {studentID: 9, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: []},
+        {studentID: 10, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: true, tags: []},
+        {studentID: 11, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: false, tags: []},
+        {studentID: 12, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: []},
+        {studentID: 13, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
+        {studentID: 14, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
+        {studentID: 15, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
         // {
         //     studentID: 16,
         //     firstName: 'Another',
@@ -93,13 +108,13 @@ const Store = ({children}) => {
         //     hallPassPrivledges: true,
         //     tags: [{tagName: 'ESL', color: 'purple'}]
         // },
-        // {studentID: 17, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: []},
-        // {studentID: 18, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: true, tags: []},
-        // {studentID: 19, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: true, tags: []},
-        // {studentID: 20, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: false, tags: []},
-        // {studentID: 21, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
-        // {studentID: 22, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
-        // {studentID: 23, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
+        {studentID: 17, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: []},
+        {studentID: 18, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: true, tags: []},
+        {studentID: 19, firstName: 'Jane', lastName: 'Smith', hallPassPrivledges: true, tags: []},
+        {studentID: 20, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: false, tags: []},
+        {studentID: 21, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
+        {studentID: 22, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
+        {studentID: 23, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
         // {studentID: 24, firstName: 'Another', lastName: 'Student', hallPassPrivledges: true, tags: []},
         // {studentID: 25, firstName: 'Jared', lastName: 'Smith', hallPassPrivledges: true, tags: []},
         // {studentID: 26, firstName: 'Juan', lastName: 'Garcia', hallPassPrivledges: true, tags: []},
@@ -132,23 +147,23 @@ const Store = ({children}) => {
     ])
 
     return (
-        //<StudentCardsContext> value={[cards, setCards]}>
-        <IconContext.Provider value={[iconCount, setIconCount]}>
-            <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
-                <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
-                    <StudentContext.Provider value={[student, setStudent]}>
-                        <DeskContext.Provider value={[desks, setDesks]}>
-                            <MenuContext.Provider value={[menu, setMenu]}>
-                                <NavContext.Provider value={[open, setOpen]}>
-                                    {children}
-                                </NavContext.Provider>
-                            </MenuContext.Provider>
-                        </DeskContext.Provider>
-                    </StudentContext.Provider>
-                </DraggableStudentContext.Provider>
-            </DraggableDeskContext.Provider>
-        </IconContext.Provider>
-        // </StudentCardsContext>
+        <ClassroomContext.Provider value={[classroom, setClassroom]}>
+            <IconContext.Provider value={[iconCount, setIconCount]}>
+                <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
+                    <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
+                        <StudentContext.Provider value={[student, setStudent]}>
+                            <DeskContext.Provider value={[desks, setDesks]}>
+                                <MenuContext.Provider value={[menu, setMenu]}>
+                                    <NavContext.Provider value={[open, setOpen]}>
+                                        {children}
+                                    </NavContext.Provider>
+                                </MenuContext.Provider>
+                            </DeskContext.Provider>
+                        </StudentContext.Provider>
+                    </DraggableStudentContext.Provider>
+                </DraggableDeskContext.Provider>
+            </IconContext.Provider>
+        </ClassroomContext.Provider>
     )
 }
 

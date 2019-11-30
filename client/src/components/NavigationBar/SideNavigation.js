@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Link, Route, Switch} from "react-router-dom";
-import {NavContext} from '../../Store'
+import {ClassroomContext, NavContext} from '../../Store'
 import clsx from 'clsx';
 import Tooltip from '@material-ui/core/Tooltip';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
@@ -51,6 +51,9 @@ function ItemTwo(theme) {
 }
 
 const MiniDrawer = () => {
+
+    const [classroom, setClassroom] = useContext(ClassroomContext);
+    // console.log("ClassRomm",classroom);
     const [open, setOpen] = useContext(NavContext);
     const classes = useStyles();
     const theme = useTheme();
@@ -71,7 +74,7 @@ const MiniDrawer = () => {
                 }}
                 open={open}
             >
-                <List >
+                <List>
                     <ListItem>
                         <ListItemIcon onClick={() => setOpen(open === false ? true : false)}>
                             {open ? <CloseIcon/> : <MenuIcon/>}
@@ -81,32 +84,28 @@ const MiniDrawer = () => {
 
                 <Divider/>
 
-                <List subheader={<ListSubheader>Classes</ListSubheader>}>
-                    {[
-                        {title: 'First class is the best', color: "red", icon: "ClassIcon"},
-                        {title: 'Second', color: "blue", icon: "ClassIcon"},
-                        {title: 'Third', color: "teal", icon: "ClassIcon"},
-                        {title: 'Fourth', color: "pink", icon: "ClassIcon"},
-                        {title: 'Fifth', color: "violet", icon: "ClassIcon"},
-                        {title: 'Sixth', color: "orange", icon: "ClassIcon"},
-                        {title: 'Seventh', color: "purple", icon: "ClassIcon"},
-                        {title: 'Eighth', color: "#00ff00", icon: "ClassIcon"}
-                    ].map((classObject, index) => {
-                            return (
-                                !open ? <Tooltip title={classObject.title} placement="right" aria-label={classObject.title}>
-                                        <ListItem button key={classObject.title} component={Link} to={`${classObject.title}`}>
-                                            <ListItemIcon>{<FolderIcon htmlColor={classObject.color}/>}</ListItemIcon>
+                {/*<List subheader={<ListSubheader>Classes</ListSubheader>}>*/}
+                <List>
+                    {classroom
+                        .map((classObject, index) => {
+                                return (
+                                    !open ?
+                                        <Tooltip title={classObject.title} placement="right" aria-label={classObject.title}>
+                                            <ListItem button key={classObject.title} component={Link}
+                                                      to={`${classObject.title}`}>
+                                                <ListItemIcon>{<FolderIcon htmlColor={classObject.color}/>}</ListItemIcon>
+                                                <ListItemText primary={classObject.title}/>
+                                            </ListItem>
+                                        </Tooltip>
+                                        :
+                                        <ListItem button key={classObject.title} component={Link}
+                                                  to={`${classObject.title}`}>
+                                            <ListItemIcon>{<ClassIcon htmlColor={classObject.color}/>}</ListItemIcon>
                                             <ListItemText primary={classObject.title}/>
                                         </ListItem>
-                                    </Tooltip>
-                                    :
-                                    <ListItem button key={classObject.title} component={Link} to={`${classObject.title}`}>
-                                        <ListItemIcon>{<ClassIcon htmlColor={classObject.color}/>}</ListItemIcon>
-                                        <ListItemText primary={classObject.title}/>
-                                    </ListItem>
-                            )
-                        }
-                    )}
+                                )
+                            }
+                        )}
                 </List>
 
                 <Divider/>

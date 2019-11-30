@@ -9,7 +9,7 @@ function SecuredRoute(props) {
     <Route path={path} render={() => {
         if (!auth.isAuthenticated()) {
           auth.signIn();
-          return <div>What's this?</div>;
+          return <div>Auth rendering is taking a while.. Change to loading icon</div>;
         }
         return <Component />
     }} />

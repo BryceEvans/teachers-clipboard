@@ -60,7 +60,11 @@ const TopNavigation = (props) => {
                                 </ListItemIcon>
                             </ListItem>
                         </List>
-                        <AppName id="AppName"><h1>Eclipment</h1></AppName>
+                        <AppName id="AppName">
+                            <a href="/home">
+                                <h1>Eclipment</h1>
+                            </a>
+                        </AppName>
                     </NameButton>
 
                     <SearchBarDiv>

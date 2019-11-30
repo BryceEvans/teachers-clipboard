@@ -92,8 +92,9 @@ const MyDropTarget = (props, index) => {
     const isActive = canDrop && isOver;
     const style = {
         width: "200px",
-        height: "404px",
-        border: '1px dashed gray'
+        height: "700px",
+        border: '1px dashed gray',
+        overflow: "scroll",
     }
 
     const backgroundColor = isActive ? 'lightgreen' : 'lightgreen';

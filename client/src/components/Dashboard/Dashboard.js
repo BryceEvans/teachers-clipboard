@@ -6,18 +6,19 @@ import { DndProvider } from "react-dnd";
 import MainDnD from "../DND/MainDnD"
 import TopNavigation from "../NavigationBar/TopNavigation";
 import SideNavigation from "../NavigationBar/SideNavigation";
-
+import MainHome from "../HomePage/MainHome"
 const Dashboard = () => {
       return (
   <DndProvider backend={HTML5Backend}>
         <div>
-            <Route exact path='/home' component={ MainDnD } />
+            <TopNavigation />
+            <SideNavigation />
+            <Route exact path='/home' component={ MainHome } />
             <Route path='/home/second' component={ MainDnD } />
             <Route path='/home/third' component={ MainDnD } />
 
             {/*<MainDnD />*/}
-            <TopNavigation />
-            <SideNavigation />
+
             {/*<TopBar />*/}
             {/*<Route path='/dashboard/tracker' component={ Tracker } />*/}
             

@@ -23,10 +23,10 @@ const Student = ({student, index, arrayId, removeCard, moveCard}) => {
             // console.log("MOnitor item not an item?", monitor);
             const item = monitor.getItem();
             const dropResult = monitor.getDropResult();
-            console.log("Student -> UseDrag -> getItem", item);
-            console.log("Student -> UseDrag -> PROPS", props);
-            console.log("Student -> UseDrag -> dropResult", dropResult);
-            console.log("Student -> UseDrag -> index", index);
+            // console.log("Student -> UseDrag -> getItem", item);
+            // console.log("Student -> UseDrag -> PROPS", props);
+            // console.log("Student -> UseDrag -> dropResult", dropResult);
+            // console.log("Student -> UseDrag -> index", index);
 
             if (dropResult && dropResult.arrayId !== item.arrayId) {
                 // console.log("Student -> UseDrag -> item.ArrayId", item.arrayId);

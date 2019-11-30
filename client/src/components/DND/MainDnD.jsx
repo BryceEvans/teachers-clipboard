@@ -23,7 +23,7 @@ const MainDragDrop = () => {
     const deleteDesk = useCallback(
         (indexToRemove) => {
             console.log("DELETE INDEX", indexToRemove.id);
-            desks.splice(indexToRemove.id ,1)
+            desks.splice(indexToRemove.id, 1)
             setDesks(desks)
             //cant get update to be read. It's weird so this isn't working
             // setDesks(
@@ -60,7 +60,6 @@ const MainDragDrop = () => {
     //     })
 
 
-
     const createDesk = useCallback(() => {
         setDesks([...desks, {
             top: 100,
@@ -89,41 +88,69 @@ const MainDragDrop = () => {
         setCanDragStudent(!canDragStudent)
     }, [canDragStudent])
 
+    const myParent = {
+        display: "flex",
+        // justifyContent: "center",
+        flexWrap: "nowrap",
+        padding: 5,
+    }
+    const myChild = {
+        margin: 10,
+    }
 
     return (
         <div className="DnD">
-            <div>
-                <button onClick={() => createDesk()}>Add Desk</button>
+            <div style={myParent}>
+                <div style={myChild}>
+                    <button onClick={() => createDesk()}>Add Desk</button>
+                </div>
+
+                <div style={myChild}>
+                    <button onClick={() => update()}>Update</button>
+                </div>
+
+                <label htmlFor="snapToGridWhileDragging" style={myChild}>
+                    <input
+                        type="checkbox"
+                        checked={canDragDesk}
+                        onChange={onToggleForbidDeskDrag}
+                    />
+                    <small>Lock Desks</small>
+                </label>
+
+                <label style={myChild}>
+                    <input
+                        type="checkbox"
+                        checked={canDragStudent}
+                        onChange={onToggleForbidStudentDrag}
+                    />
+                    <small>Lock Students</small>
+                </label>
+
+                <label htmlFor="snapToGridAfterDrop" style={myChild}>
+                    <input
+                        id="snapToGridAfterDrop"
+                        type="checkbox"
+                        checked={snapToGridAfterDrop}
+                        onChange={handleSnapToGridAfterDropChange}
+                    />
+                    <small>Snap to grid after drop</small>
+                </label>
+
+                <label htmlFor="snapToGridWhileDragging" style={myChild}>
+                    <input
+                        id="snapToGridWhileDragging"
+                        type="checkbox"
+                        checked={snapToGridWhileDragging}
+                        onChange={handleSnapToGridWhileDraggingChange}
+                    />
+                    <small>Snap to grid while dragging</small>
+                </label>
             </div>
+
             <br/>
 
             <div>
-                <button onClick={() => update()}>Update</button>
-            </div>
-            <br/>
-
-            <label htmlFor="snapToGridWhileDragging">
-                <input
-                    type="checkbox"
-                    checked={canDragDesk}
-                    onChange={onToggleForbidDeskDrag}
-                />
-                <small>Lock Desks</small>
-            </label>
-            <br/>
-
-            <label>
-                <input
-                    type="checkbox"
-                    checked={canDragStudent}
-                    onChange={onToggleForbidStudentDrag}
-                />
-                <small>Lock Students</small>
-            </label>
-            <br/>
-
-            <div>
-
                 {menu.visible ?
                     <div>
                         Future Menu:
@@ -134,35 +161,12 @@ const MainDragDrop = () => {
                     </div>
                     : null}
             </div>
-            <Container snapToGrid={snapToGridAfterDrop}/>
-            <StudentList arrayId={"MasterList"}/>
-
+            <div style={{display: "flex"}}>
+                <Container snapToGrid={snapToGridAfterDrop}/>
+                <StudentList arrayId={"MasterList"}/>
+            </div>
 
             <CustomDragLayer snapToGrid={snapToGridWhileDragging}/>
-            <p>
-                <label htmlFor="snapToGridWhileDragging">
-                    <input
-                        id="snapToGridWhileDragging"
-                        type="checkbox"
-                        checked={snapToGridWhileDragging}
-                        onChange={handleSnapToGridWhileDraggingChange}
-                    />
-                    <small>Snap to grid while dragging</small>
-                </label>
-                <br/>
-
-
-                <br/>
-                <label htmlFor="snapToGridAfterDrop">
-                    <input
-                        id="snapToGridAfterDrop"
-                        type="checkbox"
-                        checked={snapToGridAfterDrop}
-                        onChange={handleSnapToGridAfterDropChange}
-                    />
-                    <small>Snap to grid after drop</small>
-                </label>
-            </p>
         </div>
     )
 }

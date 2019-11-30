@@ -45,21 +45,6 @@ const MainDragDrop = () => {
         setMenu({visible: true, id: id, title: title, top: top, left: left, deskType: newDeskType, students: students}) //Needed to prevent an intermediary click
     }
 
-    // const deleteDesk = useCallback(
-    //     (indexToRemove) => {
-    //         setDesks(
-    //             update(desks, {
-    //                 0: {
-    //                     students: {
-    //                         $splice: [[indexToRemove, 1]]
-    //                     }
-    //                 }
-    //             }));
-    //         // }
-    //
-    //     })
-
-
     const createDesk = useCallback(() => {
         setDesks([...desks, {
             top: 100,
@@ -95,7 +80,8 @@ const MainDragDrop = () => {
         padding: 5,
     }
     const myChild = {
-        margin: 10,
+        marginLeft: 5,
+        marginRight: 5,
     }
 
     return (

@@ -97,7 +97,7 @@ const MyDropTarget = (props, index) => {
         overflow: "scroll",
     }
 
-    const backgroundColor = isActive ? 'lightgreen' : 'lightgreen';
+    const backgroundColor = isActive ? 'lightgray' : 'lightblue';
 
     drop(ref)
 

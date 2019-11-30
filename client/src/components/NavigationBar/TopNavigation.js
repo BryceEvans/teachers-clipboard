@@ -95,8 +95,7 @@ const UserContainer = styled.div`
 	width: 100%;
 	top: 0;
     align-items: center;
-    height: 60px;
-    // padding-left: 60px;
+    height: 50px;
     border-bottom: 1px solid #525A65;
     justify-content: space-around;
     z-index: 2000;

@@ -6,6 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {ClassroomContext} from "../../Store";
+import AddClass from "../Modals/AddClass";
+import {SliderPicker} from 'react-color';
+import {CirclePicker} from 'react-color';
+import {AlphaPicker} from 'react-color';
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 const MainHome = () => {
     const [classrooms, setClassroom] = useContext(ClassroomContext);
@@ -14,17 +19,19 @@ const MainHome = () => {
 
     const renderCard = (classroom, index, backgroundColor) => {
         return (
-            <Card className={classes.card} style={{backgroundColor}}>
-                <CardContent>
-                    <br/>
-                    <Typography className={classes.title} color="textSecondary">
-                        Class Title
-                    </Typography>
-                    <Typography variant="h3" component="h">
-                        {classroom.title}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <ButtonBase className={classes.cardButton}>
+                <Card className={classes.card} style={{backgroundColor}}>
+                    <CardContent>
+                        <br/>
+                        <Typography className={classes.title} color="textSecondary">
+                            Class Title
+                        </Typography>
+                        <Typography variant="h3" component="h">
+                            {classroom.title}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </ButtonBase>
         )
     }
     return (
@@ -38,7 +45,8 @@ const MainHome = () => {
                 }
             </div>
             <div className={classes.addClassButton}>
-                <button>Add Class</button>
+                {/*<button>Add Class</button>*/}
+                <AddClass/>
             </div>
         </div>
     );
@@ -53,10 +61,15 @@ const useStyles = makeStyles({
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
+
     },
     card: {
         width: 225,
         height: 225,
+    },
+    cardButton: {
+        display: "block",
+        textAlign: "initial",
         margin: 20,
     },
     addClassButton: {

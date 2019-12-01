@@ -21,16 +21,16 @@ const Store = ({children}) => {
     ])
 
 
-    const [classroom, setClassroom] = useState(
+    const [classrooms, setClassroom] = useState(
         [
-            {title: 'First class is the best', color: "red", icon: "ClassIcon"},
-            {title: 'Second', color: "blue", icon: "ClassIcon"},
-            {title: 'Third', color: "teal", icon: "ClassIcon"},
-            {title: 'Fourth', color: "pink", icon: "ClassIcon"},
-            {title: 'Fifth', color: "violet", icon: "ClassIcon"},
-            {title: 'Sixth', color: "orange", icon: "ClassIcon"},
-            {title: 'Seventh', color: "purple", icon: "ClassIcon"},
-            {title: 'Eighth', color: "#00ff00", icon: "ClassIcon"},
+            {title: 'First class is the best', color: "red", icon: "ClassIcon", classStudents: 20},
+            {title: 'Second', color: "blue", icon: "ClassIcon", classStudents: 20},
+            {title: 'Third', color: "teal", icon: "ClassIcon", classStudents: 20},
+            {title: 'Fourth', color: "pink", icon: "ClassIcon", classStudents: 20},
+            {title: 'Fifth', color: "violet", icon: "ClassIcon", classStudents: 20},
+            {title: 'Sixth', color: "orange", icon: "ClassIcon", classStudents: 20},
+            {title: 'Seventh', color: "purple", icon: "ClassIcon", classStudents: 20},
+            {title: 'Eighth', color: "#00ff00", icon: "ClassIcon", classStudents: 20},
         ]
     )
 
@@ -82,7 +82,7 @@ const Store = ({children}) => {
         {top: 460, left: 400, title: 'Desk10', deskType: "desk-square-45", students: []},
     ])
 
-    const [student, setStudent] = useState([
+    const [students, setStudent] = useState([
         {studentID: 4, firstName: 'Maria', lastName: 'Jiminez', hallPassPrivledges: true, tags: []},
         {studentID: 5, firstName: 'Jake', lastName: 'Johnson', hallPassPrivledges: true, tags: []},
         {studentID: 6, firstName: 'Paul', lastName: 'Johnson', hallPassPrivledges: true, tags: []},
@@ -147,11 +147,11 @@ const Store = ({children}) => {
     ])
 
     return (
-        <ClassroomContext.Provider value={[classroom, setClassroom]}>
+        <ClassroomContext.Provider value={[classrooms, setClassroom]}>
             <IconContext.Provider value={[iconCount, setIconCount]}>
                 <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
                     <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
-                        <StudentContext.Provider value={[student, setStudent]}>
+                        <StudentContext.Provider value={[students, setStudent]}>
                             <DeskContext.Provider value={[desks, setDesks]}>
                                 <MenuContext.Provider value={[menu, setMenu]}>
                                     <NavContext.Provider value={[open, setOpen]}>

@@ -9,7 +9,8 @@ export const NavContext = React.createContext()
 export const DraggableDeskContext = React.createContext()
 export const DraggableStudentContext = React.createContext()
 export const ClassroomContext = React.createContext()
-
+export const EditClassroomContext = React.createContext()
+export const OpenTrackerContext = React.createContext()
 
 
 const Store = ({children}) => {
@@ -19,6 +20,9 @@ const Store = ({children}) => {
         {name: 'eye', count: 2},
         {name: 'phone', count: 3},
     ])
+
+    const [editClassroom, setEditClassroom] = useState(false)
+    const [openTracker, setOpenTracker] = useState(false)
 
 
     const [classrooms, setClassroom] = useState(
@@ -147,23 +151,27 @@ const Store = ({children}) => {
     ])
 
     return (
-        <ClassroomContext.Provider value={[classrooms, setClassroom]}>
-            <IconContext.Provider value={[iconCount, setIconCount]}>
-                <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
-                    <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
-                        <StudentContext.Provider value={[students, setStudent]}>
-                            <DeskContext.Provider value={[desks, setDesks]}>
-                                <MenuContext.Provider value={[menu, setMenu]}>
-                                    <NavContext.Provider value={[open, setOpen]}>
-                                        {children}
-                                    </NavContext.Provider>
-                                </MenuContext.Provider>
-                            </DeskContext.Provider>
-                        </StudentContext.Provider>
-                    </DraggableStudentContext.Provider>
-                </DraggableDeskContext.Provider>
-            </IconContext.Provider>
-        </ClassroomContext.Provider>
+        <OpenTrackerContext.Provider value={[openTracker, setOpenTracker]}>
+            <EditClassroomContext.Provider value={[editClassroom, setEditClassroom]}>
+                <ClassroomContext.Provider value={[classrooms, setClassroom]}>
+                    <IconContext.Provider value={[iconCount, setIconCount]}>
+                        <DraggableDeskContext.Provider value={[canDragDesk, setCanDragDesk]}>
+                            <DraggableStudentContext.Provider value={[canDragStudent, setCanDragStudent]}>
+                                <StudentContext.Provider value={[students, setStudent]}>
+                                    <DeskContext.Provider value={[desks, setDesks]}>
+                                        <MenuContext.Provider value={[menu, setMenu]}>
+                                            <NavContext.Provider value={[open, setOpen]}>
+                                                {children}
+                                            </NavContext.Provider>
+                                        </MenuContext.Provider>
+                                    </DeskContext.Provider>
+                                </StudentContext.Provider>
+                            </DraggableStudentContext.Provider>
+                        </DraggableDeskContext.Provider>
+                    </IconContext.Provider>
+                </ClassroomContext.Provider>
+            </EditClassroomContext.Provider>
+        </OpenTrackerContext.Provider>
     )
 }
 

@@ -42,13 +42,6 @@ function ItemOne(theme) {
     );
 }
 
-function ItemTwo(theme) {
-    return (
-        <Paper>
-            <div>Item two</div>
-        </Paper>
-    );
-}
 
 const MiniDrawer = () => {
 
@@ -91,8 +84,11 @@ const MiniDrawer = () => {
                                 return (
                                     !open ?
                                         <Tooltip title={classObject.title} placement="right" aria-label={classObject.title}>
-                                            <ListItem button key={classObject.title} component={Link}
-                                                      to={`${classObject.title}`}>
+                                            <ListItem button key={classObject.title}
+                                                      component={Link}
+                                                      // to={classObject.title}
+                                                to={`/home/${classObject.title}`}
+                                            >
                                                 <ListItemIcon>{<FolderIcon htmlColor={classObject.color}/>}</ListItemIcon>
                                                 <ListItemText primary={classObject.title}/>
                                             </ListItem>
@@ -147,10 +143,7 @@ const MiniDrawer = () => {
                 </Tooltip>
 
 
-                <Switch>
-                    <Route path="/home/one" component={ItemOne}/>
-                    <Route path="/two" component={ItemTwo}/>
-                </Switch>
+
 
             </Drawer>
             <main className={classes.content}>

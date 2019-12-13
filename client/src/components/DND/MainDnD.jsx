@@ -1,7 +1,13 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react'
 import Container from './Container'
 import CustomDragLayer from './CustomDragLayer'
-import {DeskContext, DraggableDeskContext, DraggableStudentContext, MenuContext} from '../../Store'
+import {
+    DeskContext,
+    DraggableDeskContext,
+    DraggableStudentContext,
+    EditClassroomContext,
+    MenuContext
+} from '../../Store'
 import StudentList from "./StudentList";
 import update from "immutability-helper";
 
@@ -84,9 +90,15 @@ const MainDragDrop = () => {
         marginRight: 5,
     }
 
+    const [editClassroom, setEditClassroom] = useContext(EditClassroomContext)
+
+
     return (
         <div className="DnD">
             <div style={myParent}>
+                <div style={myChild}>
+                    <button onClick={() => setEditClassroom(!editClassroom)}>SAVE</button>
+                </div>
                 <div style={myChild}>
                     <button onClick={() => createDesk()}>Add Desk</button>
                 </div>

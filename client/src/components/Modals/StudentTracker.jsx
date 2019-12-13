@@ -12,41 +12,12 @@ import CropPortraitIcon from '@material-ui/icons/CropPortrait';
 import CropLandscapeIcon from '@material-ui/icons/CropLandscape';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 
-const AddClass = () => {
-    const [selected, setSelected] = React.useState(false);
-    const [open, setOpen] = React.useState(false);
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
+const StudentTracker = ({value, handleClose}) => {
 
-    const [classrooms, setClassroom] = useContext(ClassroomContext)
-    console.log("Classrooms in State", classrooms);
     const [tempClass, setTempClass] = useState({
         title: "Class 1",
         classStudents: 30
     })
-    const [tempColor, setTempColor] = useState({
-        selectedColor: "#79c9d2"
-    })
-
-
-    const handleChangeComplete = (color, event) => {
-        console.log("COLOR.HEX: ", color.hex);
-        setTempColor({selectedColor: color.hex})
-    };
-
-
-    const createClass = useCallback(() => {
-        setClassroom([...classrooms, {
-            title: tempClass.title,
-            icon: "ClassIcon",
-            color: tempColor.selectedColor,
-            classStudents: tempClass.classStudents
-        }])
-    });
 
     const handleTextFieldChange = (e) => {
         console.log("E.Target.Value:", e.target.value);
@@ -56,23 +27,14 @@ const AddClass = () => {
     };
 
     return (
-        <div>
-            {useEffect(() => {
-                {
-                    console.log("UseEffect Title", tempClass.title)
-                    console.log("UseEffect Stud", tempClass.classStudents)
-                }
-            }, [tempClass])}
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Add Class
-            </Button>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <div >
+            <Dialog open={value} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add Class</DialogTitle>
                 <DialogContent>
                     <TextField
                         variant={"outlined"}
                         autoFocus
-                        placeholder={tempClass.title}
+                        placeholder="Cheese"
                         margin="dense"
                         id="title"
                         label="Class Title"
@@ -82,7 +44,7 @@ const AddClass = () => {
                     />
                     <TextField
                         variant={"outlined"}
-                        placeholder={tempClass.classStudents}
+                        placeholder="{tempClass.classStudents}"
                         margin="dense"
                         id="classStudents"
                         label="Approximate Number of Students"
@@ -96,54 +58,26 @@ const AddClass = () => {
                         </DialogContentText>
                         <ToggleButton
                             value="yes"
-                            selected={selected}
-                            onChange={() => {setSelected(!selected)}}
                         >
                             <CropLandscapeIcon/>
-                            Landscape
+                            AddClass.jsxLandscape
                         </ToggleButton>
 
 
 
                         <ToggleButton
                             value="check"
-                            selected={selected}
-                            onChange={() => {setSelected(!selected)}}
                         >
                             <CropPortraitIcon/>
                             Portrait
                         </ToggleButton>
 
-
-                        {/*<Button*/}
-                        {/*    variant="outlined"*/}
-                        {/*    color="default"*/}
-                        {/*    // className={classes.button}*/}
-                        {/*    startIcon={<CropLandscapeIcon/>}*/}
-                        {/*>*/}
-                        {/*    Landscape*/}
-                        {/*</Button>*/}
-
                     </div>
 
-
-                    {/*<TextField*/}
-                    {/*    variant={"outlined"}*/}
-                    {/*    placeholder={tempClass.classStudents}*/}
-                    {/*    margin="dense"*/}
-                    {/*    id="classStudents"*/}
-                    {/*    label="Class Orientation"*/}
-                    {/*    type="number"*/}
-                    {/*    fullWidth*/}
-                    {/*    onChange={handleTextFieldChange}*/}
-                    {/*/>*/}
-                    <br/>
                     <br/>
                     <DialogContentText>
                         Select a color
                     </DialogContentText>
-
-                    <SliderPicker color={tempColor.selectedColor} onChangeComplete={handleChangeComplete}/>
 
 
                 </DialogContent>
@@ -152,7 +86,6 @@ const AddClass = () => {
                         Cancel
                     </Button>
                     <Button onClick={(e) => {
-                        createClass(e);
                         handleClose()
                     }} color="primary">
                         Create
@@ -161,6 +94,5 @@ const AddClass = () => {
             </Dialog>
         </div>
     );
-
 }
-export default AddClass
+export default StudentTracker

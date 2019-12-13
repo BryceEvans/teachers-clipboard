@@ -11,6 +11,8 @@ import {SliderPicker} from 'react-color';
 import {CirclePicker} from 'react-color';
 import {AlphaPicker} from 'react-color';
 import ButtonBase from "@material-ui/core/ButtonBase";
+import {Link} from "react-router-dom";
+import ListItem from "@material-ui/core/ListItem";
 
 const MainHome = () => {
     const [classrooms, setClassroom] = useContext(ClassroomContext);
@@ -19,7 +21,9 @@ const MainHome = () => {
 
     const renderCard = (classroom, index, backgroundColor) => {
         return (
-            <ButtonBase className={classes.cardButton}>
+            <ButtonBase className={classes.cardButton}
+                        component={Link}
+                        to={`home/${classroom.title}`}>
                 <Card className={classes.card} style={{backgroundColor}}>
                     <CardContent>
                         <br/>

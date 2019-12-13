@@ -24,7 +24,7 @@ const DroppableDesk = ({title, index, students}) => {
             // console.log("GETITEM: ", monitor.getItem())
             // console.log("ITEM: ", item)
             let arrLen;
-            if (desks[index].students.length < 1) {
+            if (desks[index].students.length < 2) {
                 arrLen = desks[index].students.length
                 desks[index].students.push(item.student)
             }
